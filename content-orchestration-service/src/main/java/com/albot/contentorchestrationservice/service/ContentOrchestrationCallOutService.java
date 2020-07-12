@@ -14,5 +14,5 @@ public interface ContentOrchestrationCallOutService {
 
     CallOut updateCallOut(CallOut callOut);
 
-    String deleteCallOutByhadmId(final Integer hadmId);
+    void deleteCallOutByhadmId(final Integer hadmId);
 }

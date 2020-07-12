@@ -3,6 +3,8 @@ package com.albot.contentorchestrationservice.service;
 import com.albot.contentorchestrationservice.cassandra.entity.CallOutEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.CallOutRepository;
 import com.albot.contentorchestrationservice.dto.CallOut;
+import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
+import com.albot.contentorchestrationservice.exception.CallOutHadmIdNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +30,16 @@ public class ContentOrchestrationCallOutServiceImp implements ContentOrchestrati
     }
 
     @Override
-    public CallOut getCallOutByhadmId(Integer handId) {
-        CallOutEntity callOutEntity = callOutRepository.findByhadmId(handId);
+    public CallOut getCallOutByhadmId(Integer hadmId) {
+        CallOutEntity callOutEntity = callOutRepository.findByhadmId(hadmId);
         if (!Objects.isNull(callOutEntity)) {
             if (callOutEntity.getStatusFlag() == Boolean.TRUE) {
-                return new CallOut();
+                throw new BadStatusRequestException(
+                        String.format("Invalid  hadmId value as a %d, Please provide correct hadmId", hadmId));
             }
+        } else {
+            throw new CallOutHadmIdNotFoundException(
+                    String.format("Given hadmId not found in callOut information with value  %d", hadmId));
         }
         return convertToCallOut(callOutEntity);
     }
@@ -54,15 +60,16 @@ public class ContentOrchestrationCallOutServiceImp implements ContentOrchestrati
     }
 
     @Override
-    public String deleteCallOutByhadmId(Integer hadmId) {
+    public void deleteCallOutByhadmId(Integer hadmId) {
         CallOutEntity callOutEntity = callOutRepository.findByhadmId(hadmId);
         if(!Objects.isNull(callOutEntity) && hadmId.equals(callOutEntity.getHadmId())){
                callOutEntity.setStatusFlag(Boolean.TRUE);
                callOutRepository.save(callOutEntity);
         } else {
-            return String.format("Given hadmId with value %d not found in callOut information, Please provide correct hadmId", hadmId);
+            throw new CallOutHadmIdNotFoundException(
+                    String.format("Given hadmId with value %d not " +
+                               "found in callOut information, Please provide correct hadmId", hadmId));
         }
-        return "Successfully deleted callOut information given by hadmId";
     }
 
     private CallOutEntity convertToCallOutEntity(CallOut callOut) {

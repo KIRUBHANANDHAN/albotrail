@@ -3,6 +3,8 @@ package com.albot.contentorchestrationservice.service;
 import com.albot.contentorchestrationservice.cassandra.entity.CareGiversEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.CareGiversRepository;
 import com.albot.contentorchestrationservice.dto.CareGivers;
+import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
+import com.albot.contentorchestrationservice.exception.CareGiversCgIdNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +36,12 @@ public class ContentOrchestrationCareGiversServiceImp implements ContentOrchestr
         CareGiversEntity careGiversEntity = careGiversRepository.findBycgId(cgId);
         if (!Objects.isNull(careGiversEntity)) {
             if (careGiversEntity.isStatusFlag() == Boolean.TRUE) {
-                //TODO:- Here We have to throw User friendly exception
-                return new CareGivers();
+                throw new CareGiversCgIdNotFoundException(
+                        String.format("Invalid  cgId value as a %d, Please provide correct cgId", cgId));
             }
+        } else {
+           throw new BadStatusRequestException(
+                   String.format("Given cgId not found in callGivers information with value  %d", cgId));
         }
         return convertToCareGivers(careGiversEntity);
     }
@@ -56,16 +61,17 @@ public class ContentOrchestrationCareGiversServiceImp implements ContentOrchestr
     }
 
     @Override
-    public String deleteCareGiversByCgId(Integer cgid) {
+    public void deleteCareGiversByCgId(Integer cgid) {
         CareGiversEntity careGiversEntity =
                 careGiversRepository.findBycgId(cgid);
         if (!Objects.isNull(careGiversEntity) && cgid.equals(careGiversEntity.getCgId())) {
             careGiversEntity.setStatusFlag(true);
             careGiversRepository.save(careGiversEntity);
         } else {
-            return String.format("Given cgid with value %d not found in CareGivers information, Please provide correct cgId", cgid);
+            throw new CareGiversCgIdNotFoundException(
+                    String.format("Given cgid with value %d not found in careGivers information," +
+                            "Please provide correct cgId", cgid));
         }
-        return "Successfully deleted CareGivers information given by cgId";
     }
 
     private CareGiversEntity convertToCareGiversEntity(CareGivers careGivers) {

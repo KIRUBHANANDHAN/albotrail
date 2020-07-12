@@ -68,8 +68,9 @@ public class ContentOrchestrationCallOutController {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A CallOut Information.")
     public ResponseEntity<Response> deleteCallOutInfo(@RequestParam("hadmId") Integer hadmId) {
+        callOutService.deleteCallOutByhadmId(hadmId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
-                .setMessage(callOutService.deleteCallOutByhadmId(hadmId)));
+                .setMessage("Successfully deleted callOut information given by hadmId"));
     }
 }

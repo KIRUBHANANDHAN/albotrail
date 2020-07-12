@@ -14,5 +14,5 @@ public interface ContentOrchestrationPatientService {
 
     Patients updatePatients(Patients patients);
 
-    String deletePatientsBySubjectId(final Integer hadmId);
+    void deletePatientsBySubjectId(final Integer subjectId);
 }

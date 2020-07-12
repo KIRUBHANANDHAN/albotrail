@@ -68,8 +68,9 @@ public class ContentOrchestrationPatientController {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A Patient Information By subjectId .")
     public ResponseEntity<Response> deletePatientInfo(@RequestParam("subjectId") Integer subjectId) {
-      return ResponseEntity.ok(new Response().setStatus("Success")
+        patientService.deletePatientsBySubjectId(subjectId);
+        return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
-                .setMessage(patientService.deletePatientsBySubjectId(subjectId)));
+                .setMessage("Successfully deleted patient information given by subjectId"));
     }
 }

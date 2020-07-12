@@ -13,6 +13,5 @@ public interface ContentOrchestrationAdmissionsService {
 
     Admissions updateAdmissions(Admissions admissions);
 
-    //Todo :- We are going remove return type in future
-    String deleteAdmissionsByhadmId(final Integer hadmId);
+    void deleteAdmissionsByhadmId(final Integer hadmId);
 }

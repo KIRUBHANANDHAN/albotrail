@@ -3,6 +3,8 @@ package com.albot.contentorchestrationservice.service;
 import com.albot.contentorchestrationservice.cassandra.entity.PatientEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.PatientRepository;
 import com.albot.contentorchestrationservice.dto.Patients;
+import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
+import com.albot.contentorchestrationservice.exception.PatientSubjectIdNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +35,12 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
         PatientEntity patientEntity = patientRepository.findBySubjectId(subjectId);
         if(!Objects.isNull(patientEntity)) {
             if (patientEntity.getStatusFlag() == Boolean.TRUE) {
-                return new Patients();
+                throw new BadStatusRequestException(
+                        String.format("Invalid  subjectId value as a %d, Please provide correct subjectId", subjectId));
             }
+        } else{
+            throw new PatientSubjectIdNotFoundException(
+                    String.format("Given subjectId not found in patient information with value  %d", subjectId));
         }
         return convertToPatients(
                 patientEntity);
@@ -55,15 +61,15 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
     }
 
     @Override
-    public String deletePatientsBySubjectId(Integer subjectId) {
+    public void deletePatientsBySubjectId(Integer subjectId) {
         PatientEntity patientEntity = patientRepository.findBySubjectId(subjectId);
         if (!Objects.isNull(patientEntity) && subjectId.equals(patientEntity.getSubjectId()) ) {
             patientEntity.setStatusFlag(Boolean.TRUE);
             patientRepository.save(patientEntity);
         } else {
-            return String.format("Given hadmId with value %d not found in patient information, Please provide correct subjectId", subjectId);
+             throw new PatientSubjectIdNotFoundException(
+                     String.format("Given subjectId with value %d not found in patient information, Please provide correct subjectId", subjectId));
         }
-        return "Successfully deleted patient information given by subjectId";
     }
 
     private PatientEntity convertToPatientsEntity(Patients patients) {

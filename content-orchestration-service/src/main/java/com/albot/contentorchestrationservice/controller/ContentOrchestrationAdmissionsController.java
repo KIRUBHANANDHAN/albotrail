@@ -67,8 +67,9 @@ public class ContentOrchestrationAdmissionsController  {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A Admissions Information.")
     public ResponseEntity<Response> deleteAdmissionsInfo(@RequestParam("hadmId") Integer hadmId) {
+        admissionsService.deleteAdmissionsByhadmId(hadmId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
-                .setMessage(admissionsService.deleteAdmissionsByhadmId(hadmId)));
+                .setMessage("Successfully deleted admissions information given by hadmId"));
     }
 }

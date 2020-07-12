@@ -3,6 +3,8 @@ package com.albot.contentorchestrationservice.service;
 import com.albot.contentorchestrationservice.cassandra.entity.AdmissionsEntity;
 import com.albot.contentorchestrationservice.dto.Admissions;
 import com.albot.contentorchestrationservice.cassandra.repository.AdmissionsRepository;
+import com.albot.contentorchestrationservice.exception.AdmissionsHadmIdNotFoundException;
+import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +36,12 @@ public class ContentOrchestrationAdmissionsServiceImp implements ContentOrchestr
         AdmissionsEntity admissionsEntity = admissionsRepository.findByhadmId(hadmId);
         if (!Objects.isNull(admissionsEntity)) {
             if (admissionsEntity.getStatusFlag() == Boolean.TRUE) {
-                //TODO Here We have to throw User friendly message(Exception)
-                return new Admissions();
+                throw new BadStatusRequestException(
+                        String.format("Invalid  hadmId value as a %d, Please provide correct hadmId", hadmId));
             }
+        } else {
+            throw new AdmissionsHadmIdNotFoundException(
+                    String.format("Given hadmId not found in admissions information with value  %d", hadmId));
         }
         return convertToAdmissions(admissionsEntity);
     }
@@ -58,16 +63,16 @@ public class ContentOrchestrationAdmissionsServiceImp implements ContentOrchestr
     }
 
     @Override
-    public String deleteAdmissionsByhadmId(Integer hadmId) {
+    public void deleteAdmissionsByhadmId(Integer hadmId) {
         AdmissionsEntity admissionsEntity = admissionsRepository.findByhadmId(hadmId);
         if (!Objects.isNull(admissionsEntity) && hadmId.equals(admissionsEntity.getHadmId())) {
             admissionsEntity.setStatusFlag(Boolean.TRUE);
             admissionsRepository.save(admissionsEntity);
         } else {
-            //TODO Here We have to throw User friendly message(Exception)
-            return String.format("Given hadmId with value %d not found in admissions information, Please provide correct hadmId", hadmId);
+            throw new AdmissionsHadmIdNotFoundException(
+                    String.format("Given hadmId with value %d not " +
+                            "found in admissions information, Please provide correct hadmId", hadmId));
         }
-        return "Successfully deleted admissions information given by hadmId";
     }
 
     private AdmissionsEntity convertToAdmissionsEntity(Admissions admissions) {

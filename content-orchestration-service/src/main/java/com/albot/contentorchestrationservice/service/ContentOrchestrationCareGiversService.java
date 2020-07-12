@@ -14,5 +14,5 @@ public interface ContentOrchestrationCareGiversService {
 
     CareGivers updateCareGivers(CareGivers careGivers);
 
-     String deleteCareGiversByCgId(final Integer cgid);
+     void deleteCareGiversByCgId(final Integer cgid);
 }

@@ -71,9 +71,10 @@ public class ContentOrchestrationCareGiversController {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A CareGivers Information.")
     public ResponseEntity<Response> deleteCareGiversInfo(@RequestParam("cgid") Integer cgid) {
+        careGiversService.deleteCareGiversByCgId(cgid);
         return ResponseEntity.ok(new Response().setStatus("Success")
-                                .setStatusCode(HttpStatus.OK.value())
-                                .setMessage(careGiversService.deleteCareGiversByCgId(cgid)));
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully deleted CareGivers information given by cgid"));
     }
 }
 
