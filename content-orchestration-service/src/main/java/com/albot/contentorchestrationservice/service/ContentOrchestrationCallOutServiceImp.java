@@ -6,7 +6,6 @@ import com.albot.contentorchestrationservice.dto.CallOut;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -25,45 +24,59 @@ public class ContentOrchestrationCallOutServiceImp implements ContentOrchestrati
 
     @Override
     public List<CallOut> getAllCallOut() {
-        return null;
+        return convertToListCallOut(callOutRepository.findAll());
     }
 
     @Override
-    public CallOut getCallOut(Integer handId) {
-        return convertToCallOutEntity(
-                   callOutRepository.findByhadmId(handId));
+    public CallOut getCallOutByhadmId(Integer handId) {
+        CallOutEntity callOutEntity = callOutRepository.findByhadmId(handId);
+        if (!Objects.isNull(callOutEntity)) {
+            if (callOutEntity.getStatusFlag() == Boolean.TRUE) {
+                return new CallOut();
+            }
+        }
+        return convertToCallOut(callOutEntity);
     }
 
     @Override
     public CallOut createCallOut(CallOut callOut) {
-
-        return convertToCallOutEntity(
-                callOutRepository.insert(
-                        convertToCallOut(callOut)));
+        CallOutEntity callOutEntity = convertToCallOutEntity(callOut);
+        callOutEntity.setStatusFlag(Boolean.FALSE);
+        return convertToCallOut(
+                callOutRepository.insert(callOutEntity));
     }
 
     @Override
     public CallOut updateCallOut(CallOut callOut) {
-        return convertToCallOutEntity(
+        return convertToCallOut(
                 callOutRepository.save(
-                        convertToCallOut(callOut)));
+                        convertToCallOutEntity(callOut)));
     }
 
     @Override
-    public CallOut deleteCallOut(Integer handId) {
-        return null;
+    public String deleteCallOutByhadmId(Integer hadmId) {
+        CallOutEntity callOutEntity = callOutRepository.findByhadmId(hadmId);
+        if(!Objects.isNull(callOutEntity) && hadmId.equals(callOutEntity.getHadmId())){
+               callOutEntity.setStatusFlag(Boolean.TRUE);
+               callOutRepository.save(callOutEntity);
+        } else {
+            return String.format("Given hadmId with value %d not found in callOut information, Please provide correct hadmId", hadmId);
+        }
+        return "Successfully deleted callOut information given by hadmId";
     }
 
-    private CallOutEntity convertToCallOut(CallOut callOut) {
+    private CallOutEntity convertToCallOutEntity(CallOut callOut) {
         return modelMapper
                 .map(callOut, CallOutEntity.class);
     }
 
-    private CallOut convertToCallOutEntity(CallOutEntity callOutEntity) {
-        if (Objects.isNull(callOutEntity)) {
-            return new CallOut();
-        }
+    private CallOut convertToCallOut(CallOutEntity callOutEntity) {
         return modelMapper
                 .map(callOutEntity, CallOut.class);
+    }
+
+    private List<CallOut> convertToListCallOut(List<CallOutEntity> callOutEntities) {
+        return modelMapper
+                .map(callOutEntities, List.class);
     }
 }

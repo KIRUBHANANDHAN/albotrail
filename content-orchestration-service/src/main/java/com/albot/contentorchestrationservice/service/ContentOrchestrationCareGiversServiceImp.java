@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
+
 @Service
 public class ContentOrchestrationCareGiversServiceImp implements ContentOrchestrationCareGiversService {
 
@@ -25,36 +26,60 @@ public class ContentOrchestrationCareGiversServiceImp implements ContentOrchestr
 
     @Override
     public List<CareGivers> getAllCareGivers() {
-        return null;
+        return convertToListCareGivers(careGiversRepository.findAll());
     }
 
     @Override
-    public CareGivers getCareGivers(Integer cgId) {
-        return convertToAdmissionsEntity(careGiversRepository.findBycgId(cgId));
+    public CareGivers getCareGiversByCgId(Integer cgId) {
+        CareGiversEntity careGiversEntity = careGiversRepository.findBycgId(cgId);
+        if (!Objects.isNull(careGiversEntity)) {
+            if (careGiversEntity.isStatusFlag() == Boolean.TRUE) {
+                //TODO:- Here We have to throw User friendly exception
+                return new CareGivers();
+            }
+        }
+        return convertToCareGivers(careGiversEntity);
     }
 
     @Override
     public CareGivers createCareGivers(CareGivers careGivers) {
-        return convertToAdmissionsEntity(
-                careGiversRepository.insert(convertToAdmissions(careGivers)));
+        CareGiversEntity careGiversEntity = convertToCareGiversEntity(careGivers);
+        careGiversEntity.setStatusFlag(false);
+        return convertToCareGivers(
+                careGiversRepository.insert(careGiversEntity));
     }
 
     @Override
     public CareGivers updateCareGivers(CareGivers careGivers) {
-        return convertToAdmissionsEntity(
-                careGiversRepository.save(convertToAdmissions(careGivers)));
+        return convertToCareGivers(
+                careGiversRepository.save(convertToCareGiversEntity(careGivers)));
     }
 
-    private CareGiversEntity convertToAdmissions(CareGivers careGivers) {
+    @Override
+    public String deleteCareGiversByCgId(Integer cgid) {
+        CareGiversEntity careGiversEntity =
+                careGiversRepository.findBycgId(cgid);
+        if (!Objects.isNull(careGiversEntity) && cgid.equals(careGiversEntity.getCgId())) {
+            careGiversEntity.setStatusFlag(true);
+            careGiversRepository.save(careGiversEntity);
+        } else {
+            return String.format("Given cgid with value %d not found in CareGivers information, Please provide correct cgId", cgid);
+        }
+        return "Successfully deleted CareGivers information given by cgId";
+    }
+
+    private CareGiversEntity convertToCareGiversEntity(CareGivers careGivers) {
         return modelMapper
                 .map(careGivers, CareGiversEntity.class);
     }
 
-    private CareGivers convertToAdmissionsEntity(CareGiversEntity careGiversEntityvers) {
-        if (Objects.isNull(careGiversEntityvers)) {
-            return new CareGivers();
-        }
+    private CareGivers convertToCareGivers(CareGiversEntity careGiversEntityvers) {
         return modelMapper
                 .map(careGiversEntityvers, CareGivers.class);
+    }
+
+    private List<CareGivers> convertToListCareGivers(List<CareGiversEntity> careGiversList) {
+        return modelMapper
+                .map(careGiversList, List.class);
     }
 }

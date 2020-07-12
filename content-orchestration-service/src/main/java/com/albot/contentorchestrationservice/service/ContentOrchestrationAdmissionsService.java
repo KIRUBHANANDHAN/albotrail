@@ -7,9 +7,12 @@ public interface ContentOrchestrationAdmissionsService {
 
     List<Admissions> getAllAdmissions();
 
-    Admissions getAdmissions(final Integer handId);
+    Admissions getAdmissionsByhadmId(final Integer hadmId);
 
     Admissions createAdmissions(Admissions admissions);
 
     Admissions updateAdmissions(Admissions admissions);
+
+    //Todo :- We are going remove return type in future
+    String deleteAdmissionsByhadmId(final Integer hadmId);
 }

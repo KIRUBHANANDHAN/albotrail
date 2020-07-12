@@ -1,18 +1,18 @@
 package com.albot.contentorchestrationservice.controller;
 
 import com.albot.contentorchestrationservice.dto.CallOut;
+import com.albot.contentorchestrationservice.dto.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCallOutService;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCallOutServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.UUID;
 
-@Api(value = "contentOrchestrations", description = "Content orchestration operations for CallOut.")
+
+@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CallOut.")
 @RequestMapping( "/v1/content-orchestration/callout")
 @RestController
 public class ContentOrchestrationCallOutController {
@@ -24,41 +24,52 @@ public class ContentOrchestrationCallOutController {
         this.callOutService = callOutService;
     }
 
-    //Retrieving CallOut information by hadmId
+    //Retrieving CallOut information given by hadmId
     @GetMapping("/details")
-    @ApiOperation("Retrieve an CallOut by hadmId.")
-    public ResponseEntity<EntityModel<CallOut>> getCallOut(@RequestParam("hadmId") Integer handId) {
-        return  ResponseEntity.ok(
-                EntityModel.of(callOutService.getCallOut(handId)));
+    @ApiOperation("Retrieve A CallOut Information By hadmId.")
+    public ResponseEntity<Response> getCallOutInfo(@RequestParam("hadmId") Integer hadmId) {
+        return  ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving a callOut information given by  hadmId")
+                .setData(callOutService.getCallOutByhadmId(hadmId)));
     }
 
     //Retrieving all CallOut information
-    @GetMapping
-    @ApiOperation("Retrieve a list of all CallOut.")
-    public ResponseEntity<CollectionModel<EntityModel<CallOut>>> getAllCallOut() {
-        return null;
+    @GetMapping("/all")
+    @ApiOperation("Retrieve The List Of CallOut Information.")
+    public ResponseEntity<Response> getAllCallOutInfo() {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving all the callOut information")
+                .setData(callOutService.getAllCallOut()));
     }
 
     //Creating a CallOut information
     @PostMapping("/save")
-    @ApiOperation("Add an CallOut CallOut.")
-    public ResponseEntity<EntityModel<CallOut>> createCallOut(@RequestBody CallOut callOut){
-        return ResponseEntity.ok(
-                EntityModel.of(callOutService.createCallOut(callOut)));
+    @ApiOperation("Create A CallOut Information.")
+    public ResponseEntity<Response> createCallOutInfo(@RequestBody CallOut callOut){
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.CREATED.value())
+                .setMessage("Successfully created a callOut information")
+                .setData(callOutService.createCallOut(callOut)));
     }
 
-    //Updating  CallOut information
+    //Updating a CallOut information
     @PutMapping("/update")
-    @ApiOperation("Update an CallOut information.")
-    public ResponseEntity<EntityModel<CallOut>> updateCallOut(@RequestBody CallOut callOut) {
-        return ResponseEntity.ok(
-                EntityModel.of(callOutService.updateCallOut(callOut)));
+    @ApiOperation("Update A CallOut Information.")
+    public ResponseEntity<Response> updateCallOutInfo(@RequestBody CallOut callOut) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully updated a callOut information")
+                .setData(callOutService.updateCallOut(callOut)));
     }
 
-    //Deleting  CallOut information
-    @DeleteMapping("/{handId}")
-    @ApiOperation("Delete an Admissions information.")
-    public ResponseEntity<EntityModel<CallOut>> deleteCallOut(UUID handId) {
-        return null;
+    //Deleting a CallOut information given by hadmId
+    @DeleteMapping("/delete")
+    @ApiOperation("Delete A CallOut Information.")
+    public ResponseEntity<Response> deleteCallOutInfo(@RequestParam("hadmId") Integer hadmId) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage(callOutService.deleteCallOutByhadmId(hadmId)));
     }
 }

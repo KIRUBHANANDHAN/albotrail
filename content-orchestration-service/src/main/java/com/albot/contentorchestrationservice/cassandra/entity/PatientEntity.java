@@ -36,4 +36,6 @@ public class PatientEntity {
     private Date dateOfDeathSSN;
     @Column("expire_flag")
     private String expireFlag;
+    @Column("status_flag")
+    private Boolean statusFlag;
 }

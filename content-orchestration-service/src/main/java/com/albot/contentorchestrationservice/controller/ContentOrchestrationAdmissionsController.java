@@ -1,17 +1,17 @@
 package com.albot.contentorchestrationservice.controller;
 
 import com.albot.contentorchestrationservice.dto.Admissions;
+import com.albot.contentorchestrationservice.dto.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationAdmissionsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@Api(value = "contentOrchestrations", description = "Content orchestration operations for Admissions.")
+@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For Admissions.")
 @RequestMapping( "/v1/content-orchestration/admissions")
 @RestController
 public class ContentOrchestrationAdmissionsController  {
@@ -23,41 +23,52 @@ public class ContentOrchestrationAdmissionsController  {
         this.admissionsService = admissionsService;
     }
 
-    //Retrieving admissions information
+    //Retrieving admissions information given by hadmId
     @GetMapping("/details")
-    @ApiOperation("Retrieve an Admissions by hadmId.")
-    public ResponseEntity<EntityModel<Admissions>> getAdmissions(@RequestParam("hadmId") Integer handId) {
-        return  ResponseEntity.ok(
-                     EntityModel.of(admissionsService.getAdmissions(handId)));
+    @ApiOperation("Retrieve A Admissions By hadmId.")
+    public ResponseEntity<Response> getAdmissionsInfo(@RequestParam("hadmId") Integer handId) {
+        return  ResponseEntity.ok(new Response().setStatus("Success")
+                   .setStatusCode(HttpStatus.OK.value())
+                   .setMessage("Successfully retrieving a admissions information given by  hadmId")
+                   .setData(admissionsService.getAdmissionsByhadmId(handId)));
     }
 
     //Retrieving all admissions information
-    @GetMapping
-    @ApiOperation("Retrieve a list of all Admissions.")
-    public ResponseEntity<CollectionModel<EntityModel<Admissions>>> getAllAdmissions() {
-        return null;
+    @GetMapping("/all")
+    @ApiOperation("Retrieve The List Of Admissions Information.")
+    public ResponseEntity<Response> getAllAdmissionsInfo() {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving all the admissions information")
+                .setData(admissionsService.getAllAdmissions()));
     }
 
     //Creating  admissions information
     @PostMapping("/save")
-    @ApiOperation("Add an Admissions information.")
-    public ResponseEntity<EntityModel<Admissions>> createAdmissions(@RequestBody Admissions admissions){
-        return ResponseEntity.ok(
-                EntityModel.of(admissionsService.createAdmissions(admissions)));
+    @ApiOperation("Create A Admissions Information.")
+    public ResponseEntity<Response> createAdmissionsInfo(@RequestBody Admissions admissions) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.CREATED.value())
+                .setMessage("Successfully created a admissions information")
+                .setData(admissionsService.createAdmissions(admissions)));
     }
 
     //Updating  admissions information
     @PutMapping("/update")
-    @ApiOperation("Update an Admissions information.")
-    public ResponseEntity<EntityModel<Admissions>> updateAdmissions(@RequestBody Admissions admissions) {
-        return ResponseEntity.ok(
-                EntityModel.of(admissionsService.updateAdmissions(admissions)));
+    @ApiOperation("Update A Admissions Information.")
+    public ResponseEntity<Response> updateAdmissionsInfo(@RequestBody Admissions admissions) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully updated a admissions information")
+                .setData(admissionsService.updateAdmissions(admissions)));
     }
 
     //Deleting  admissions information
-    @DeleteMapping("/{{handId}}")
-    @ApiOperation("Delete an Admissions information.")
-    public ResponseEntity<EntityModel<Admissions>> deleteAdmissions(Integer handId) {
-        return null;
+    @DeleteMapping("/delete")
+    @ApiOperation("Delete A Admissions Information.")
+    public ResponseEntity<Response> deleteAdmissionsInfo(@RequestParam("hadmId") Integer hadmId) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage(admissionsService.deleteAdmissionsByhadmId(hadmId)));
     }
 }

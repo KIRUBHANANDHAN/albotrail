@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.springframework.hateoas.server.core.Relation;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,50 +16,49 @@ import java.util.Date;
 @EqualsAndHashCode
 @JsonSerialize
 @JsonDeserialize
-@Relation(value = "Admissions", collectionRelation = "Admissions")
 public class Admissions implements Serializable {
-    @ApiModelProperty("It's rowId as a Integer type.")
+    @ApiModelProperty("Field is used for holding rowId data as a Integer type.")
     private Integer rowId;
-    @ApiModelProperty("It's subjectId as a Integer type.")
+    @ApiModelProperty("Field is used for holding subjectId data as a Integer type.")
     private Integer subjectId;
     @NonNull
-    @ApiModelProperty("It's hadmId as a Integer type.")
+    @ApiModelProperty(value = "Field is used for holding hadmId data as a Integer type.", required = true)
     private Integer hadmId;
-    @ApiModelProperty("It's admitTime as a  Date type.")
+    @ApiModelProperty("Field is used for holding admitTime date as a  Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date admitTime;
-    @ApiModelProperty("It's dischargeTime as a Date type.")
+    @ApiModelProperty("Field is used for holding dischargeTime date as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dischargeTime;
-    @ApiModelProperty("It's deathTime as a Date type.")
+    @ApiModelProperty("Field is used for holding deathTime date as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date deathTime;
-    @ApiModelProperty("It's admissionType as a String type.")
+    @ApiModelProperty("Field is used for holding admissionType data as a String type.")
     private String admissionType;
-    @ApiModelProperty("It's admissionLocation as a String type.")
+    @ApiModelProperty("Field is used for holding admissionLocation data as a String type.")
     private String admissionLocation;
-    @ApiModelProperty("It's dischargeLocation as a String type.")
+    @ApiModelProperty("Field is used for holding dischargeLocation data as a String type.")
     private String dischargeLocation;
-    @ApiModelProperty("It's insurance as a String type.")
+    @ApiModelProperty("Field is used for holding insurance data as a String type.")
     private String insurance;
-    @ApiModelProperty("It's language as a String type.")
+    @ApiModelProperty("Field is used for holding language data as a String type.")
     private String language;
-    @ApiModelProperty("It's religion as a String type.")
+    @ApiModelProperty("Field is used for holding religion data as a String type.")
     private String religion;
-    @ApiModelProperty("It's maritalStatus as a String type.")
+    @ApiModelProperty("Field is used for holding maritalStatus data as a String type.")
     private String maritalStatus;
-    @ApiModelProperty("It's ethniCity as a String type.")
+    @ApiModelProperty("Field is used for holding ethniCity  data as a String type.")
     private String ethniCity;
-    @ApiModelProperty("It's edregTime as a Date type.")
+    @ApiModelProperty("Field is used for holding edregTime date as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date edregTime;
-    @ApiModelProperty("It's edoutTime as a Date type.")
+    @ApiModelProperty("Field is used for holding edoutTime date as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date edoutTime;
-    @ApiModelProperty("It's diagnosis as a String type.")
+    @ApiModelProperty("Field is used for holding diagnosis data as a String type.")
     private String diagnosis;
-    @ApiModelProperty("It's hospitalExpireFlag as a Integer type.")
+    @ApiModelProperty("Field is used for holding hospitalExpireFlag data as a Integer type.")
     private Integer hospitalExpireFlag;
-    @ApiModelProperty("It's hasChartEventsData as a Integer type.")
+    @ApiModelProperty("Field is used for holding hasChartEventsData data as a Integer type.")
     private Integer hasChartEventsData;
 }

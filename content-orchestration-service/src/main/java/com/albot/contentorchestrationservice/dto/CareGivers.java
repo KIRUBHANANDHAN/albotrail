@@ -3,7 +3,6 @@ package com.albot.contentorchestrationservice.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.springframework.hateoas.server.core.Relation;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,14 +11,13 @@ import org.springframework.hateoas.server.core.Relation;
 @ToString
 @Builder(toBuilder = true)
 @EqualsAndHashCode
-@Relation(value = "CareGivers", collectionRelation = "CareGivers")
 public class CareGivers {
-    @ApiModelProperty("It's rowId as a Integer type.")
+    @ApiModelProperty("Field is used for holding rowId data as a Integer type.")
     private Integer rowId;
-    @ApiModelProperty("It's cgId as a Integer type.")
+    @ApiModelProperty(value = "Field is used for holding cgId date as a Integer type.", required = true)
     private Integer cgId;
-    @ApiModelProperty("It's label as a String type.")
+    @ApiModelProperty("Field is used for holding label date as a String type.")
     private String label;
-    @ApiModelProperty("It's description as a String type.")
+    @ApiModelProperty("Field is used for holding description date as a String type.")
     private String description;
 }

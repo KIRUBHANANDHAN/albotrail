@@ -14,24 +14,24 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @EqualsAndHashCode
 public class Patients {
-    @ApiModelProperty("It's rowId as a Integer type.")
+    @ApiModelProperty("Field is used for holding rowId data as a Integer type.")
     private Integer rowId;
-    @ApiModelProperty("It's subjectId as a Integer type.")
+    @ApiModelProperty(value = "Field is used for holding subjectId data as a Integer type.", required = true)
     private Integer subjectId;
-    @ApiModelProperty("It's gender as a String type.")
+    @ApiModelProperty("Field is used for holding gender data as a String type.")
     private String gender;
-    @ApiModelProperty("It's dateOfBirth as a Date type.")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @ApiModelProperty("Field is used for holding dateOfBirth date as a Date type.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dateOfBirth;
-    @ApiModelProperty("It's dateOfDeath as a Date type.")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @ApiModelProperty("Field is used for holding dateOfDeath date as a Date type.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dateOfDeath;
-    @ApiModelProperty("It's dateOfDeathHosp as a Date type.")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @ApiModelProperty("Field is used for holding dateOfDeathHosp date as a Date type.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dateOfDeathHosp;
-    @ApiModelProperty("It's dateOfDeathSSN as a Date type.")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @ApiModelProperty("Field is used for holding dateOfDeathSSN date as a Date type.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dateOfDeathSSN;
-    @ApiModelProperty("It's rowId as a String type.")
+    @ApiModelProperty("Field is used for holding rowId data as a String type.")
     private String expireFlag;
 }

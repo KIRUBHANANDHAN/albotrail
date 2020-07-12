@@ -1,19 +1,17 @@
 package com.albot.contentorchestrationservice.controller;
 
-import com.albot.contentorchestrationservice.dto.CallOut;
 import com.albot.contentorchestrationservice.dto.Patients;
+import com.albot.contentorchestrationservice.dto.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationPatientService;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationPatientServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.UUID;
 
-@Api(value = "contentOrchestrations", description = "Content orchestration operations for CareGivers.")
+@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CareGivers.")
 @RequestMapping( "/v1/content-orchestration/patients")
 @RestController
 public class ContentOrchestrationPatientController {
@@ -25,41 +23,53 @@ public class ContentOrchestrationPatientController {
         this.patientService = patientService;
     }
 
-    //Retrieving Patient information
+    //Retrieving Patient information give by subjectId
     @GetMapping("/details")
-    @ApiOperation("Retrieve an Patient information by subjectId.")
-    public ResponseEntity<EntityModel<Patients>> getPatient(@RequestParam("subjectId") Integer subjectId) {
-        return  ResponseEntity.ok(
-                EntityModel.of(patientService.getBySubjectId(subjectId)));
+    @ApiOperation("Retrieve An Patient Information By subjectId.")
+    public ResponseEntity<Response> getPatientInfo(@RequestParam("subjectId") Integer subjectId) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving patient information by given subjectId")
+                .setData(patientService.getBySubjectId(subjectId)));
     }
 
-    //Retrieving Patients information
-    @GetMapping
-    @ApiOperation("Retrieve a list of all Patients.")
-    public ResponseEntity<CollectionModel<EntityModel<Patients>>> getAllPatients() {
-        return null;
+    //Retrieving a Patients information
+    @GetMapping("/all")
+    @ApiOperation("Retrieve The List Of Patients information.")
+    public ResponseEntity<Response> getAllPatientsInfo() {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving all the patients information")
+                .setData(patientService.getAllPatients()));
+
     }
 
-    //Creating a CareGivers
+    //Creating a Patients information
     @PostMapping("/save")
-    @ApiOperation("Add an Patients Information.")
-    public ResponseEntity<EntityModel<Patients>> createPatients(@RequestBody Patients patients){
-        return ResponseEntity.ok(
-                EntityModel.of(patientService.createPatients(patients)));
+    @ApiOperation("Create A Patient Information.")
+    public ResponseEntity<Response> createPatientInfo(@RequestBody Patients patients) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.CREATED.value())
+                .setMessage("Successfully created a patient information")
+                .setData(patientService.createPatients(patients)));
     }
 
     //Updating  Patients information
     @PutMapping("/update")
-    @ApiOperation("Update an patients information.")
-    public ResponseEntity<EntityModel<Patients>> updateCareGivers(@RequestBody Patients patients) {
-        return ResponseEntity.ok(
-                EntityModel.of(patientService.updatePatients(patients)));
+    @ApiOperation("Update A Patient Information.")
+    public ResponseEntity<Response> updatePatientInfo(@RequestBody Patients patients) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully updated patient information")
+                .setData(patientService.updatePatients(patients)));
     }
 
-    //Deleting  Patients information
-    @DeleteMapping("/{handId}")
-    @ApiOperation("Delete an Patients information.")
-    public ResponseEntity<EntityModel<CallOut>> deletePatients(UUID handId) {
-        return null;
+    //Deleting  Patient information by given subjectId
+    @DeleteMapping("/delete")
+    @ApiOperation("Delete A Patient Information By subjectId .")
+    public ResponseEntity<Response> deletePatientInfo(@RequestParam("subjectId") Integer subjectId) {
+      return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage(patientService.deletePatientsBySubjectId(subjectId)));
     }
 }

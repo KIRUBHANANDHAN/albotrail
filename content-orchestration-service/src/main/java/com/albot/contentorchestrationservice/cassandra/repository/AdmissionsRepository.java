@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface AdmissionsRepository extends CassandraRepository<AdmissionsEntity, Integer> {
 
-    public List<AdmissionsEntity> findAll();
+    List<AdmissionsEntity> findAll();
 
     @AllowFiltering
-    public AdmissionsEntity findByhadmId(Integer hadmId);
+    AdmissionsEntity findByhadmId(Integer hadmId);
 
-    public AdmissionsEntity insert(AdmissionsEntity admissionsEntity);
+    AdmissionsEntity insert(AdmissionsEntity admissionsEntity);
 
-    public AdmissionsEntity save(AdmissionsEntity admissionsEntity);
+    AdmissionsEntity save(AdmissionsEntity admissionsEntity);
 }

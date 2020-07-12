@@ -67,4 +67,6 @@ public class CallOutEntity {
     private Date firstReservationTime;
     @Column("current_reservation_time")
     private Date currentReservationTime;
+    @Column("status_flag")
+    private Boolean statusFlag;
 }

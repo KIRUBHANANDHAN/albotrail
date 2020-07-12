@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface CareGiversRepository extends CassandraRepository<CareGiversEntity, Integer> {
 
-    public List<CareGiversEntity> findAll();
+     List<CareGiversEntity> findAll();
 
-    @AllowFiltering
-    public CareGiversEntity findBycgId(Integer cgId);
+     @AllowFiltering
+     CareGiversEntity findBycgId(Integer cgId);
 
-    public CareGiversEntity insert(CareGiversEntity careGiversEntity);
+     CareGiversEntity insert(CareGiversEntity careGiversEntity);
 
-    public CareGiversEntity save(CareGiversEntity careGiversEntity);
+     CareGiversEntity save(CareGiversEntity careGiversEntity);
 
 }

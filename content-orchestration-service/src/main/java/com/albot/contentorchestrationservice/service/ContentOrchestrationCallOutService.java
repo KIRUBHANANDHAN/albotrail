@@ -8,11 +8,11 @@ public interface ContentOrchestrationCallOutService {
 
     List<CallOut> getAllCallOut();
 
-    CallOut getCallOut(final Integer handId);
+    CallOut getCallOutByhadmId(final Integer hadmId);
 
     CallOut createCallOut(CallOut callOut);
 
     CallOut updateCallOut(CallOut callOut);
 
-    CallOut deleteCallOut(final Integer handId);
+    String deleteCallOutByhadmId(final Integer hadmId);
 }

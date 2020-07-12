@@ -6,13 +6,13 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @Configuration
-@EnableSwagger2WebMvc
+@EnableSwagger2
 public class SwaggerConfig {
     @Bean
     public Docket api() {
@@ -26,10 +26,9 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
-                .title("Content Orchestration microservice API. [Customizable UI info block]")
-                .description("These are endpoints for composition orchestration.")
-                .contact(new Contact("[Insert name here] [Service owner]", "[Insert website here]", "[Insert email " +
-                        "here]"))
+                .title("Content Orchestration Microservice API.")
+                .description("These are endpoints for content orchestration service.")
+                .version("v1.0")
                 .build();
     }
 }

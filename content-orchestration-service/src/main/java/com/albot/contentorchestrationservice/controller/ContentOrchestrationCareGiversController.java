@@ -1,21 +1,20 @@
 package com.albot.contentorchestrationservice.controller;
 
-import com.albot.contentorchestrationservice.dto.CallOut;
+
 import com.albot.contentorchestrationservice.dto.CareGivers;
+import com.albot.contentorchestrationservice.dto.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCareGiversService;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCareGiversServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
 
-@Api(value = "contentOrchestrations", description = "Content orchestration operations for CareGivers.")
+@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CareGivers.")
 @RequestMapping( "/v1/content-orchestration/caregivers")
 @RestController
 public class ContentOrchestrationCareGiversController {
@@ -27,42 +26,54 @@ public class ContentOrchestrationCareGiversController {
         this.careGiversService = careGiversService;
     }
 
-    //Retrieving CareGivers information by cgid
+    //Retrieving CareGivers information by given cgid
     @GetMapping("/details")
-    @ApiOperation("Retrieve an CareGivers by cgid.")
-    public ResponseEntity<EntityModel<CareGivers>> getCareGivers(@RequestParam("cgid") Integer cgid) {
-        return  ResponseEntity.ok(
-                EntityModel.of(careGiversService.getCareGivers(cgid)));
+    @ApiOperation("Retrieve A CareGivers By cgid.")
+    public ResponseEntity<Response> getCareGiversInfo(@RequestParam("cgid") Integer cgid) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                        .setStatusCode(HttpStatus.OK.value())
+                        .setMessage("Successfully retrieving a careGivers information by given cgid")
+                        .setData(careGiversService.getCareGiversByCgId(cgid)));
     }
 
     //Retrieving CareGivers information based on cgid
-    @GetMapping
-    @ApiOperation("Retrieve a list of all CareGivers.")
-    public ResponseEntity<CollectionModel<EntityModel<CareGivers>>> getAllCareGivers() {
-        return null;
+    @GetMapping("/all")
+    @ApiOperation("Retrieve The List Of CareGivers Information.")
+    public ResponseEntity<Response> getAllCareGiversInfo() {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving all the careGivers information")
+                .setData(careGiversService.getAllCareGivers()));
     }
 
-    //Creating a CareGivers
+    //Creating  CareGivers information
     @PostMapping("/save")
-    @ApiOperation("Add an CareGivers CareGivers.")
-    public ResponseEntity<EntityModel<CareGivers>> createCareGivers(@RequestBody CareGivers careGivers){
+    @ApiOperation("Created  A CareGivers Information.")
+    public ResponseEntity<Response> createCareGiversInfo(@RequestBody CareGivers careGivers){
         return ResponseEntity.ok(
-                EntityModel.of(careGiversService.createCareGivers(careGivers)));
+                new Response().setStatus("Success")
+                        .setStatusCode(HttpStatus.CREATED.value())
+                        .setMessage("Successfully created a caregivers information")
+                        .setData(careGiversService.createCareGivers(careGivers)));
     }
 
     //Updating  CareGivers information based on cgid
     @PutMapping("/update")
-    @ApiOperation("Update an CareGivers information.")
-    public ResponseEntity<EntityModel<CareGivers>> updateCareGivers(@RequestBody CareGivers careGivers) {
-        return ResponseEntity.ok(
-                EntityModel.of(careGiversService.updateCareGivers(careGivers)));
+    @ApiOperation("Update A CareGivers Information.")
+    public ResponseEntity<Response> updateCareGiversInfo(@RequestBody CareGivers careGivers) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                        .setStatusCode(HttpStatus.OK.value())
+                        .setMessage("Successfully updated a caregivers information")
+                        .setData(careGiversService.updateCareGivers(careGivers)));
     }
 
     //Deleting  CareGivers information by cgid
-    @DeleteMapping("/{handId}")
-    @ApiOperation("Delete an CareGivers information.")
-    public ResponseEntity<EntityModel<CallOut>> deleteCareGivers(UUID cgid) {
-        return null;
+    @DeleteMapping("/delete")
+    @ApiOperation("Delete A CareGivers Information.")
+    public ResponseEntity<Response> deleteCareGiversInfo(@RequestParam("cgid") Integer cgid) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                                .setStatusCode(HttpStatus.OK.value())
+                                .setMessage(careGiversService.deleteCareGiversByCgId(cgid)));
     }
 }
 

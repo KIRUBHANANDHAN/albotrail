@@ -1,25 +1,27 @@
 
 server :
+    servlet :
+       context-path : "/albot"
     port : 8181
 
 spring:
-   # profiles: test
-    #name: test-YAML
-    #environment: dev
+#   profiles: test
+#   name: test-YAML
+#   environment: dev
     data:
       cassandra:
-           keyspace-name: "test_hospital"
-           #cluster-name: 127.0.0.1
+           keyspace-name: "hospital"
+#          cluster-name: "test-cluster"
            local-datacenter: "datacenter1"
            contact-points: 127.0.0.1
            port: 9042
-            #username:
-            #password
-            #schema-action: CREATE_IF_NOT_EXISTS
+#          username:
+#          password
+#             schema-action: CREATE_IF_NOT_EXISTS
 
 #logging:
 #    level:
 #        root: DEBUG
 #        org.springframework.web: DEBUG
-#        #com.datastax.driver.core.QueryLogger.NORMAL: TRACE
-#        #com.datastax.driver.core.QueryLogger.SLOW: TRACE
+#           com.datastax.driver.core.QueryLogger.NORMAL: TRACE
+#           com.datastax.driver.core.QueryLogger.SLOW: TRACE

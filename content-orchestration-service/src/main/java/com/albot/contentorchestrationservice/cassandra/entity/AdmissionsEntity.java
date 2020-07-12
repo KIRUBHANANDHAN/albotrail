@@ -1,6 +1,7 @@
 package com.albot.contentorchestrationservice.cassandra.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.*;
@@ -14,12 +15,15 @@ import java.util.Date;
 @ToString
 @Builder(toBuilder = true)
 @EqualsAndHashCode
+@JsonSerialize
+@JsonDeserialize
 @Table("ADMISSIONS")
 public class AdmissionsEntity  {
 
     @Column("row_id")
     private Integer rowId;
     @Column("subject_id")
+    @PrimaryKeyColumn(name = "subject_id", ordinal =  0, type = PrimaryKeyType.PARTITIONED)
     private Integer subjectId;
     @NonNull
     @Column("hadm_id")
@@ -57,4 +61,6 @@ public class AdmissionsEntity  {
     private Integer hospitalExpireFlag;
     @Column("has_chart_events_data")
     private Integer hasChartEventsData;
+    @Column("status_flag")
+    private Boolean statusFlag;
 }

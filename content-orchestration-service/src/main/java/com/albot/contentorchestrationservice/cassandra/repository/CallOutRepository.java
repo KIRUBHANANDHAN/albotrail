@@ -11,9 +11,9 @@ public interface CallOutRepository  extends CassandraRepository<CallOutEntity, I
     public List<CallOutEntity> findAll();
 
     @AllowFiltering
-    public CallOutEntity findByhadmId(Integer hadmId);
+    CallOutEntity findByhadmId(Integer hadmId);
 
-    public CallOutEntity insert(CallOutEntity callOutEntity);
+    CallOutEntity insert(CallOutEntity callOutEntity);
 
-    public CallOutEntity save(CallOutEntity callOutEntity);
+    CallOutEntity save(CallOutEntity callOutEntity);
 }

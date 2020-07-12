@@ -8,10 +8,11 @@ public interface ContentOrchestrationCareGiversService {
 
     List<CareGivers> getAllCareGivers();
 
-    CareGivers getCareGivers(final Integer cgId);
+    CareGivers getCareGiversByCgId(final Integer cgId);
 
-    CareGivers createCareGivers(CareGivers callOut);
+    CareGivers createCareGivers(CareGivers careGivers);
 
-    CareGivers updateCareGivers(CareGivers callOut);
+    CareGivers updateCareGivers(CareGivers careGivers);
 
+     String deleteCareGiversByCgId(final Integer cgid);
 }
