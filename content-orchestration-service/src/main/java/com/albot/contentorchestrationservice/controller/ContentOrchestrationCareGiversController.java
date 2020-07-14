@@ -7,17 +7,22 @@ import com.albot.contentorchestrationservice.service.ContentOrchestrationCareGiv
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCareGiversServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-
+@Slf4j
 @Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CareGivers.")
 @RequestMapping( "/v1/content-orchestration/caregivers")
 @RestController
 public class ContentOrchestrationCareGiversController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ContentOrchestrationCareGiversController.class);
 
     private ContentOrchestrationCareGiversService careGiversService;
 
@@ -30,6 +35,7 @@ public class ContentOrchestrationCareGiversController {
     @GetMapping("/details")
     @ApiOperation("Retrieve A CareGivers By cgid.")
     public ResponseEntity<Response> getCareGiversInfo(@RequestParam("cgid") Integer cgid) {
+        logger.info("Fetching careGivers information based on filter : cgid = {} ", cgid);
         return ResponseEntity.ok(new Response().setStatus("Success")
                         .setStatusCode(HttpStatus.OK.value())
                         .setMessage("Successfully retrieving a careGivers information by given cgid")
@@ -40,6 +46,7 @@ public class ContentOrchestrationCareGiversController {
     @GetMapping("/all")
     @ApiOperation("Retrieve The List Of CareGivers Information.")
     public ResponseEntity<Response> getAllCareGiversInfo() {
+        logger.info("Fetching list of careGivers information");
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving all the careGivers information")
@@ -50,6 +57,7 @@ public class ContentOrchestrationCareGiversController {
     @PostMapping("/save")
     @ApiOperation("Created  A CareGivers Information.")
     public ResponseEntity<Response> createCareGiversInfo(@RequestBody CareGivers careGivers){
+        logger.info("Saving careGivers information : {} ", careGivers);
         return ResponseEntity.ok(
                 new Response().setStatus("Success")
                         .setStatusCode(HttpStatus.CREATED.value())
@@ -61,6 +69,7 @@ public class ContentOrchestrationCareGiversController {
     @PutMapping("/update")
     @ApiOperation("Update A CareGivers Information.")
     public ResponseEntity<Response> updateCareGiversInfo(@RequestBody CareGivers careGivers) {
+        logger.info("Updating careGivers information : {}", careGivers);
         return ResponseEntity.ok(new Response().setStatus("Success")
                         .setStatusCode(HttpStatus.OK.value())
                         .setMessage("Successfully updated a caregivers information")
@@ -71,6 +80,7 @@ public class ContentOrchestrationCareGiversController {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A CareGivers Information.")
     public ResponseEntity<Response> deleteCareGiversInfo(@RequestParam("cgid") Integer cgid) {
+        logger.info("Saving careGivers information based on filter : cgid = {} ", cgid);
         careGiversService.deleteCareGiversByCgId(cgid);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())

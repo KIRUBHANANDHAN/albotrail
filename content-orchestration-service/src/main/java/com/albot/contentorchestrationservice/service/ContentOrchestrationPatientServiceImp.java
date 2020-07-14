@@ -5,15 +5,21 @@ import com.albot.contentorchestrationservice.cassandra.repository.PatientReposit
 import com.albot.contentorchestrationservice.dto.Patients;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.PatientSubjectIdNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
+@Slf4j
 @Service
 public class ContentOrchestrationPatientServiceImp implements ContentOrchestrationPatientService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ContentOrchestrationPatientServiceImp.class);
 
     private PatientRepository patientRepository;
 
@@ -22,23 +28,29 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
 
     @Autowired
     public ContentOrchestrationPatientServiceImp(PatientRepository patientRepository) {
+        logger.info("Initialization of the patientRepository object in patient service");
         this.patientRepository = patientRepository;
     }
 
     @Override
     public List<Patients> getAllPatients() {
+        logger.info("Making call to database for fetching list of patient information");
         return convertToListPatients(patientRepository.findAll());
     }
 
     @Override
     public Patients getBySubjectId(Integer subjectId) {
         PatientEntity patientEntity = patientRepository.findBySubjectId(subjectId);
+        logger.info("Successfully retrieved patient information based on condition : subjectId : {} and data : {} ", subjectId, patientEntity);
         if(!Objects.isNull(patientEntity)) {
             if (patientEntity.getStatusFlag() == Boolean.TRUE) {
+                logger.error("Failed to retrieve patient information based on condition : cgId : {} because of  data is deleted and  flag status is {}",
+                        subjectId, patientEntity.getStatusFlag());
                 throw new BadStatusRequestException(
                         String.format("Invalid  subjectId value as a %d, Please provide correct subjectId", subjectId));
             }
         } else{
+            logger.error("Patient information data not found in database based on condition : subjectId = {} ", subjectId);
             throw new PatientSubjectIdNotFoundException(
                     String.format("Given subjectId not found in patient information with value  %d", subjectId));
         }
@@ -50,12 +62,14 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
     public Patients createPatients(Patients patients) {
         PatientEntity patientEntity = convertToPatientsEntity(patients);
         patientEntity.setStatusFlag(Boolean.FALSE);
+        logger.info("Making call to database for saving patient information : {}" ,patientEntity);
         return convertToPatients(
                 patientRepository.insert(patientEntity));
     }
 
     @Override
     public Patients updatePatients(Patients patients) {
+        logger.info("Making call to database for updating patient information : {}" ,patients);
         return convertToPatients(
                 patientRepository.save(convertToPatientsEntity(patients)));
     }
@@ -63,9 +77,12 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
     @Override
     public void deletePatientsBySubjectId(Integer subjectId) {
         PatientEntity patientEntity = patientRepository.findBySubjectId(subjectId);
+        logger.info("Successfully retrieved patient information based on condition : subjectId : {} and data : {} for deleting", subjectId ,patientEntity);
         if (!Objects.isNull(patientEntity) && subjectId.equals(patientEntity.getSubjectId()) ) {
             patientEntity.setStatusFlag(Boolean.TRUE);
+            logger.info("Making call to databased for updating flag : {}  and data : {} ", patientEntity.getStatusFlag(), patientEntity);
             patientRepository.save(patientEntity);
+            logger.info("Successfully updated flag in patient service based on condition : subjectId = {} in case of delete", subjectId);
         } else {
              throw new PatientSubjectIdNotFoundException(
                      String.format("Given subjectId with value %d not found in patient information, Please provide correct subjectId", subjectId));

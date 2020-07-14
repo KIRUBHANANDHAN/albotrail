@@ -6,16 +6,21 @@ import com.albot.contentorchestrationservice.service.ContentOrchestrationCallOut
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCallOutServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
 
-
+@Slf4j
 @Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CallOut.")
-@RequestMapping( "/v1/content-orchestration/callout")
+@RequestMapping("/v1/content-orchestration/callout")
 @RestController
 public class ContentOrchestrationCallOutController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ContentOrchestrationCallOutController.class);
 
     private ContentOrchestrationCallOutService callOutService;
 
@@ -28,7 +33,8 @@ public class ContentOrchestrationCallOutController {
     @GetMapping("/details")
     @ApiOperation("Retrieve A CallOut Information By hadmId.")
     public ResponseEntity<Response> getCallOutInfo(@RequestParam("hadmId") Integer hadmId) {
-        return  ResponseEntity.ok(new Response().setStatus("Success")
+        logger.info("Fetching CallOut information based on filter: hadmId = {} in  callOut Service",hadmId);
+        return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving a callOut information given by  hadmId")
                 .setData(callOutService.getCallOutByhadmId(hadmId)));
@@ -38,6 +44,7 @@ public class ContentOrchestrationCallOutController {
     @GetMapping("/all")
     @ApiOperation("Retrieve The List Of CallOut Information.")
     public ResponseEntity<Response> getAllCallOutInfo() {
+        logger.info("Fetching list of CallOut information");
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving all the callOut information")
@@ -47,7 +54,8 @@ public class ContentOrchestrationCallOutController {
     //Creating a CallOut information
     @PostMapping("/save")
     @ApiOperation("Create A CallOut Information.")
-    public ResponseEntity<Response> createCallOutInfo(@RequestBody CallOut callOut){
+    public ResponseEntity<Response> createCallOutInfo(@RequestBody CallOut callOut) {
+        logger.info("Saving callOut information : {}", callOut);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.CREATED.value())
                 .setMessage("Successfully created a callOut information")
@@ -58,6 +66,7 @@ public class ContentOrchestrationCallOutController {
     @PutMapping("/update")
     @ApiOperation("Update A CallOut Information.")
     public ResponseEntity<Response> updateCallOutInfo(@RequestBody CallOut callOut) {
+        logger.info("Updating CallOut information based on condition: {}", callOut);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully updated a callOut information")
@@ -68,6 +77,7 @@ public class ContentOrchestrationCallOutController {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A CallOut Information.")
     public ResponseEntity<Response> deleteCallOutInfo(@RequestParam("hadmId") Integer hadmId) {
+        logger.info("Deleting callOut information based on filter : hadmI = {}", hadmId);
         callOutService.deleteCallOutByhadmId(hadmId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
