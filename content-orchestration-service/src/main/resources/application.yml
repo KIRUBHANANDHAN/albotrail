@@ -1,4 +1,5 @@
 
+
 server :
     servlet :
        context-path : "/albot"
@@ -19,9 +20,15 @@ spring:
 #          password
 #             schema-action: CREATE_IF_NOT_EXISTS
 
-#logging:
-#    level:
-#        root: DEBUG
-#        org.springframework.web: DEBUG
-#           com.datastax.driver.core.QueryLogger.NORMAL: TRACE
-#           com.datastax.driver.core.QueryLogger.SLOW: TRACE
+logging:
+#  file:
+#    name: D:/logs/Content-OrchestrationService.log
+#    pattern:
+#      console: "%d %-5level %logger : %msg%n"
+#      file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+     org.springframework.web: DEBUG
+     com.albot.contentorchestrationservice: DEBUG
+     com.datastax.driver.core.QueryLogger.NORMAL: TRACE
+     com.datastax.driver.core.QueryLogger.SLOW: TRACE
+

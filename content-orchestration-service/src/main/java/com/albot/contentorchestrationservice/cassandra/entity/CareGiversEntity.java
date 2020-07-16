@@ -27,5 +27,5 @@ public class CareGiversEntity {
     @Column("description")
     private String description;
     @Column("status_flag")
-    private boolean statusFlag;
+    private Boolean statusFlag;
 }

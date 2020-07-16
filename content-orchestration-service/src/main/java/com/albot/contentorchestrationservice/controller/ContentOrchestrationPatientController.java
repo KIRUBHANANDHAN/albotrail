@@ -6,15 +6,21 @@ import com.albot.contentorchestrationservice.service.ContentOrchestrationPatient
 import com.albot.contentorchestrationservice.service.ContentOrchestrationPatientServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CareGivers.")
 @RequestMapping( "/v1/content-orchestration/patients")
 @RestController
 public class ContentOrchestrationPatientController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ContentOrchestrationPatientController.class);
 
     private ContentOrchestrationPatientService  patientService;
 
@@ -27,6 +33,7 @@ public class ContentOrchestrationPatientController {
     @GetMapping("/details")
     @ApiOperation("Retrieve An Patient Information By subjectId.")
     public ResponseEntity<Response> getPatientInfo(@RequestParam("subjectId") Integer subjectId) {
+        logger.info("Fetching patient information based on filter : subjectId = {}", subjectId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving patient information by given subjectId")
@@ -37,6 +44,7 @@ public class ContentOrchestrationPatientController {
     @GetMapping("/all")
     @ApiOperation("Retrieve The List Of Patients information.")
     public ResponseEntity<Response> getAllPatientsInfo() {
+        logger.info("Fetching list of patient information");
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving all the patients information")
@@ -48,6 +56,7 @@ public class ContentOrchestrationPatientController {
     @PostMapping("/save")
     @ApiOperation("Create A Patient Information.")
     public ResponseEntity<Response> createPatientInfo(@RequestBody Patients patients) {
+        logger.info("Saving patient information : {} ", patients);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.CREATED.value())
                 .setMessage("Successfully created a patient information")
@@ -58,6 +67,7 @@ public class ContentOrchestrationPatientController {
     @PutMapping("/update")
     @ApiOperation("Update A Patient Information.")
     public ResponseEntity<Response> updatePatientInfo(@RequestBody Patients patients) {
+        logger.info("Updating patient information : {} ", patients);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully updated patient information")
@@ -68,6 +78,7 @@ public class ContentOrchestrationPatientController {
     @DeleteMapping("/delete")
     @ApiOperation("Delete A Patient Information By subjectId .")
     public ResponseEntity<Response> deletePatientInfo(@RequestParam("subjectId") Integer subjectId) {
+        logger.info("Deleting patient information based on filter : subjectId = {} ", subjectId);
         patientService.deletePatientsBySubjectId(subjectId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
