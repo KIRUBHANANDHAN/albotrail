@@ -44,7 +44,7 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
         logger.info("Successfully retrieved patient information based on condition : subjectId : {} and data : {} ", subjectId, patientEntity);
         if(!Objects.isNull(patientEntity)) {
             if (patientEntity.getStatusFlag() == Boolean.TRUE) {
-                logger.error("Failed to retrieve patient information based on condition : cgId : {} because of  data is deleted and  flag status is {}",
+                logger.error("Failed to retrieve patient information based on condition : subjectId : {} because of  data is deleted and  flag status is {}",
                         subjectId, patientEntity.getStatusFlag());
                 throw new BadStatusRequestException(
                         String.format("Invalid  subjectId value as a %d, Please provide correct subjectId", subjectId));

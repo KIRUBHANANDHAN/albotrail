@@ -54,4 +54,12 @@ public class GlobalExceptionHandler {
                 .setStatusCode(HttpStatus.NOT_FOUND.value())
                 .setMessage(ex.getMessage()));
     }
+
+    @ExceptionHandler(CptEventSubjectIdNotFoundException.class)
+    public ResponseEntity<Response> exceptionHandler(CptEventSubjectIdNotFoundException ex) {
+        logger.error("Error: {}", ex.getMessage());
+        return ResponseEntity.ok(new Response().setStatus("Failed")
+                .setStatusCode(HttpStatus.NOT_FOUND.value())
+                .setMessage(ex.getMessage()));
+    }
 }
