@@ -62,4 +62,12 @@ public class GlobalExceptionHandler {
                 .setStatusCode(HttpStatus.NOT_FOUND.value())
                 .setMessage(ex.getMessage()));
     }
+
+    @ExceptionHandler(CurrentProceduralTerminologyRowIdNotFoundException.class)
+    public ResponseEntity<Response> exceptionHandler(CurrentProceduralTerminologyRowIdNotFoundException ex) {
+        logger.error("Error: {}", ex.getMessage());
+        return ResponseEntity.ok(new Response().setStatus("Failed")
+                .setStatusCode(HttpStatus.NOT_FOUND.value())
+                .setMessage(ex.getMessage()));
+    }
 }
