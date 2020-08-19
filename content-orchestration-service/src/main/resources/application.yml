@@ -32,3 +32,10 @@ logging:
      com.datastax.driver.core.QueryLogger.NORMAL: TRACE
      com.datastax.driver.core.QueryLogger.SLOW: TRACE
 
+elastic_search:
+  host: "localhost"
+  schema: "http"
+  port: 9200
+  username: "elastic"
+  password: "password"
+  clustername: "dev_cluster"

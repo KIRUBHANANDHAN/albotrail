@@ -5,6 +5,8 @@ import com.albot.contentorchestrationservice.cassandra.repository.CareGiversRepo
 import com.albot.contentorchestrationservice.dto.CareGivers;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CareGiversCgIdNotFoundException;
+import com.albot.contentorchestrationservice.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -62,8 +64,17 @@ public class ContentOrchestrationCareGiversServiceImp implements ContentOrchestr
         CareGiversEntity careGiversEntity = convertToCareGiversEntity(careGivers);
         careGiversEntity.setStatusFlag(false);
         logger.info("Making call to database for saving careGiver information : {}" ,careGiversEntity);
-        return convertToCareGivers(
+        CareGivers careGiversInfo = convertToCareGivers(
                 careGiversRepository.insert(careGiversEntity));
+        try {
+            ElasticSearchUtility.restClient(Util.IndexType.CAREGIVERS.name().toLowerCase(),
+                    String.valueOf(careGiversInfo.getCgId()), Util.toObjectToJson(careGiversInfo));
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to process object mapper to converter java object to json: {}", e);
+        }
+        log.info("Return careGiversInfo response");
+
+        return careGiversInfo;
     }
 
     @Override
