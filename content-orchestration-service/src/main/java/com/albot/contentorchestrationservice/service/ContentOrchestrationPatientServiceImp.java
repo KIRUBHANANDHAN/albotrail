@@ -5,6 +5,8 @@ import com.albot.contentorchestrationservice.cassandra.repository.PatientReposit
 import com.albot.contentorchestrationservice.dto.Patients;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.PatientSubjectIdNotFoundException;
+import com.albot.contentorchestrationservice.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -63,8 +65,16 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
         PatientEntity patientEntity = convertToPatientsEntity(patients);
         patientEntity.setStatusFlag(Boolean.FALSE);
         logger.info("Making call to database for saving patient information : {}" ,patientEntity);
-        return convertToPatients(
+        Patients patientsInfo =  convertToPatients(
                 patientRepository.insert(patientEntity));
+        try {
+            ElasticSearchUtility.restClient(Util.IndexType.PATIENT.name().toLowerCase(),
+                    String.valueOf(patientsInfo.getSubjectId()), Util.toObjectToJson(patientsInfo));
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to process object mapper to converter java object to json: {}", e);
+        }
+        log.info("Return patientsInfo response");
+        return patientsInfo;
     }
 
     @Override

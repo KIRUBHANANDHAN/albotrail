@@ -5,14 +5,19 @@ import com.albot.contentorchestrationservice.cassandra.repository.CallOutReposit
 import com.albot.contentorchestrationservice.dto.CallOut;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CallOutHadmIdNotFoundException;
+import com.albot.contentorchestrationservice.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Objects;
+
 
 @Slf4j
 @Service
@@ -24,6 +29,9 @@ public class ContentOrchestrationCallOutServiceImp implements ContentOrchestrati
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private RestHighLevelClient client;
 
     @Autowired
     public ContentOrchestrationCallOutServiceImp(CallOutRepository callOutRepository) {
@@ -57,12 +65,20 @@ public class ContentOrchestrationCallOutServiceImp implements ContentOrchestrati
     }
 
     @Override
-    public CallOut createCallOut(CallOut callOut) {
+    public CallOut createCallOut(CallOut callOut)  {
         CallOutEntity callOutEntity = convertToCallOutEntity(callOut);
         callOutEntity.setStatusFlag(Boolean.FALSE);
         logger.info("Making call to database for saving callOut information : {}" ,callOutEntity);
-        return convertToCallOut(
+         CallOut callOutInfo = convertToCallOut(
                 callOutRepository.insert(callOutEntity));
+        try {
+            ElasticSearchUtility.restClient(Util.IndexType.CALLOUT.name().toLowerCase(),
+                    String.valueOf(callOutInfo.getHadmId()), Util.toObjectToJson(callOutInfo));
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to process object mapper to converter java object to json: {}", e);
+        }
+        log.info("Returned call out response");
+        return callOutInfo;
     }
 
     @Override

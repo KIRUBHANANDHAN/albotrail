@@ -5,6 +5,8 @@ import com.albot.contentorchestrationservice.cassandra.repository.CurrentProcedu
 import com.albot.contentorchestrationservice.dto.CurrentProceduralTerminology;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CurrentProceduralTerminologyRowIdNotFoundException;
+import com.albot.contentorchestrationservice.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -64,8 +66,16 @@ public class CurrentProceduralTerminologyServiceImp implements CurrentProcedural
         CurrentProceduralTerminologyEntity cptEntity = convertToCptEntity(cpt);
         cptEntity.setStatusFlag(Boolean.FALSE);
         logger.info("Making call to database for saving currentProceduralTerminology information : {}", cptEntity);
-        return convertToCpt(
+        CurrentProceduralTerminology proceduralTerminologyInfo = convertToCpt(
                 proceduralTerminologyRepository.insert(cptEntity));
+        try {
+            ElasticSearchUtility.restClient(Util.IndexType.CPT.name().toLowerCase(),
+                    String.valueOf(proceduralTerminologyInfo.getRowId()), Util.toObjectToJson(proceduralTerminologyInfo));
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to process object mapper to converter java object to json: {}", e);
+        }
+        log.info("Return cptInfo response");
+        return proceduralTerminologyInfo;
     }
 
     @Override

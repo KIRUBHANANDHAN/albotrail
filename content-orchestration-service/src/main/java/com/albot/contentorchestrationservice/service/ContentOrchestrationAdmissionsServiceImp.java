@@ -5,6 +5,8 @@ import com.albot.contentorchestrationservice.dto.Admissions;
 import com.albot.contentorchestrationservice.cassandra.repository.AdmissionsRepository;
 import com.albot.contentorchestrationservice.exception.AdmissionsHadmIdNotFoundException;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
+import com.albot.contentorchestrationservice.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -62,9 +64,17 @@ public class ContentOrchestrationAdmissionsServiceImp implements ContentOrchestr
         AdmissionsEntity admissionsEntity = convertToAdmissionsEntity(admissions);
         admissionsEntity.setStatusFlag(Boolean.FALSE);
         logger.info("Making call to database for saving admission information : {}" ,admissions);
-        return convertToAdmissions(
+        Admissions admissionsInfo = convertToAdmissions(
                 admissionsRepository
                         .insert(admissionsEntity));
+        try {
+            ElasticSearchUtility.restClient(Util.IndexType.ADMISSIONS.name().toLowerCase(),
+                    String.valueOf(admissionsInfo.getHadmId()), Util.toObjectToJson(admissionsInfo));
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to process object mapper to converter java object to json: {}", e);
+        }
+        log.info("Return admissionsInfo response");
+        return admissionsInfo;
     }
 
     @Override

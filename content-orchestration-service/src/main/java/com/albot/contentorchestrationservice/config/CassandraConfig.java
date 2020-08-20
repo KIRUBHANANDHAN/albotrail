@@ -9,7 +9,7 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 
 @Configuration
 @PropertySource(value = {"classpath:application.yml"})
-@EnableCassandraRepositories(basePackageClasses = AdmissionsRepository.class)
+@EnableCassandraRepositories(basePackages = {"com.albot.contentorchestrationservice.service"})
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
     @Value("${spring.data.cassandra.keyspace-name}")

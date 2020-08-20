@@ -5,6 +5,8 @@ import com.albot.contentorchestrationservice.cassandra.repository.CptEventReposi
 import com.albot.contentorchestrationservice.dto.CptEvent;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CptEventSubjectIdNotFoundException;
+import com.albot.contentorchestrationservice.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -63,8 +65,16 @@ public class ContentOrchestrationCptEventServiceImp implements ContentOrchestrat
         CptEventEntity cptEventEntity = convertToCptEventEntity(cptEvent);
         cptEventEntity.setStatusFlag(Boolean.FALSE);
         logger.info("Making call to database for saving cptEvent information : {}" ,cptEventEntity);
-        return convertToCptEvent(
+        CptEvent cptEventInfo =  convertToCptEvent(
                 cptEventRepository.insert(cptEventEntity));
+        try {
+            ElasticSearchUtility.restClient(Util.IndexType.CPTEVENT.name().toLowerCase(),
+                    String.valueOf(cptEventInfo.getSubjectId()), Util.toObjectToJson(cptEventInfo));
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to process object mapper to converter java object to json: {}", e);
+        }
+        log.info("Return cptEventInfo response");
+        return cptEventInfo;
     }
 
     @Override
