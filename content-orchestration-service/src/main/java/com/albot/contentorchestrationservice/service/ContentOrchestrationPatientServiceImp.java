@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 @Slf4j
 @Service
@@ -64,6 +65,7 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
     public Patients createPatients(Patients patients) {
         PatientEntity patientEntity = convertToPatientsEntity(patients);
         patientEntity.setStatusFlag(Boolean.FALSE);
+        patientEntity.setPatientId(new Random().nextInt(9000000)+1000000);
         logger.info("Making call to database for saving patient information : {}" ,patientEntity);
         Patients patientsInfo =  convertToPatients(
                 patientRepository.insert(patientEntity));

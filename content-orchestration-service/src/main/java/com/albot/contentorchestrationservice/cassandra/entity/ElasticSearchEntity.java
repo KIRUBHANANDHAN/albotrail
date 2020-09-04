@@ -29,5 +29,5 @@ public class ElasticSearchEntity {
     @Column("req_data")
     private String reqData;
     @Column("status")
-    private String status;
+    private Boolean status;
 }
