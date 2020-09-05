@@ -59,7 +59,7 @@ public class ElasticSearchUtility {
                         elasticSearchEntityObj.setIndexName(indexName);
                         elasticSearchEntityObj.setReqData(requestData);
                         elasticSearchEntityObj.setIndexId(indexId);
-                        elasticSearchEntityObj.setStatus(Util.Status.FAILED.name());
+                        elasticSearchEntityObj.setStatus(Boolean.valueOf(Util.Status.FAILED.name()));
                         ElasticSearchEntity elasticSearchEntity =
                                 elasticSearchRepository.insert(elasticSearchEntityObj);
                         if (!Objects.isNull(elasticSearchEntity)) {
