@@ -12,7 +12,7 @@ public interface PatientRepository extends CassandraRepository<PatientEntity, In
     List<PatientEntity> findAll();
 
     @AllowFiltering
-    PatientEntity findBySubjectId(Integer subjectId);
+    PatientEntity findByPatientId(Integer patientId);
 
     PatientEntity insert(PatientEntity patientEntity);
 

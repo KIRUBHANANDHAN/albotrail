@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CareGivers.")
+@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For Patient.")
 @RequestMapping( "/v1/content-orchestration/patients")
 @RestController
 public class ContentOrchestrationPatientController {
@@ -29,15 +29,15 @@ public class ContentOrchestrationPatientController {
         this.patientService = patientService;
     }
 
-    //Retrieving Patient information give by subjectId
+    //Retrieving Patient information give by patientId
     @GetMapping("/details")
-    @ApiOperation("Retrieve An Patient Information By subjectId.")
-    public ResponseEntity<Response> getPatientInfo(@RequestParam("subjectId") Integer subjectId) {
-        logger.info("Fetching patient information based on filter : subjectId = {}", subjectId);
+    @ApiOperation("Retrieve An Patient Information By patientId.")
+    public ResponseEntity<Response> getPatientInfo(@RequestParam("patientId") Integer patientId) {
+        logger.info("Fetching patient information based on filter : patientId = {}", patientId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
-                .setMessage("Successfully retrieving patient information by given subjectId")
-                .setData(patientService.getBySubjectId(subjectId)));
+                .setMessage("Successfully retrieving patient information by given patientId")
+                .setData(patientService.getByPatientId(patientId)));
     }
 
     //Retrieving a Patients information
@@ -74,14 +74,14 @@ public class ContentOrchestrationPatientController {
                 .setData(patientService.updatePatients(patients)));
     }
 
-    //Deleting  Patient information by given subjectId
+    //Deleting  Patient information by given patientId
     @DeleteMapping("/delete")
-    @ApiOperation("Delete A Patient Information By subjectId .")
-    public ResponseEntity<Response> deletePatientInfo(@RequestParam("subjectId") Integer subjectId) {
-        logger.info("Deleting patient information based on filter : subjectId = {} ", subjectId);
-        patientService.deletePatientsBySubjectId(subjectId);
+    @ApiOperation("Delete A Patient Information By patientId.")
+    public ResponseEntity<Response> deletePatientInfo(@RequestParam("patientId") Integer patientId) {
+        logger.info("Deleting patient information based on filter : patientId = {} ", patientId);
+        patientService.deletePatientByPatientId(patientId);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
-                .setMessage("Successfully deleted patient information given by subjectId"));
+                .setMessage("Successfully deleted patient information given by patientId"));
     }
 }

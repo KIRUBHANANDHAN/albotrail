@@ -8,11 +8,11 @@ public interface ContentOrchestrationPatientService {
 
     List<Patients> getAllPatients();
 
-    Patients getBySubjectId(final Integer subjectId);
+    Patients getByPatientId(final Integer patientId);
 
     Patients createPatients(Patients patients);
 
     Patients updatePatients(Patients patients);
 
-    void deletePatientsBySubjectId(final Integer subjectId);
+    void deletePatientByPatientId(final Integer patientId);
 }
