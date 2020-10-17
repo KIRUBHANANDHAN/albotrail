@@ -1,6 +1,5 @@
 package com.albot.contentorchestrationservice.filters;
 
-import com.albot.contentorchestrationservice.service.UserDetailsServiceImp;
 import com.albot.contentorchestrationservice.util.JwtProvider;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -23,10 +23,10 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImp.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
     @Autowired
-    private UserDetailsServiceImp jwtUserDetailsServiceImp;
+    private UserDetailsService userDetailsServiceImp;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             logger.warn("Couldn't find bearer string, will ignore the header");
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.jwtUserDetailsServiceImp.loadUserByUsername(username);
+            UserDetails userDetails = this.userDetailsServiceImp.loadUserByUsername(username);
             if (jwtProvider.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, SecurityContextHolder.getContext().getAuthentication(), userDetails.getAuthorities());

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @Slf4j
 @Service
-public class UserDetailsServiceImp implements UserDetailsService {
+class UserDetailsServiceImp implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImp.class);
 

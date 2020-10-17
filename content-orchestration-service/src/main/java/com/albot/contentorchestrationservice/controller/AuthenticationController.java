@@ -5,7 +5,6 @@ import com.albot.contentorchestrationservice.cassandra.entity.JwtTokenEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.JwtTokenRepository;
 import com.albot.contentorchestrationservice.model.AuthenticationRequest;
 import com.albot.contentorchestrationservice.model.AuthenticationResponse;
-import com.albot.contentorchestrationservice.service.UserDetailsServiceImp;
 import com.albot.contentorchestrationservice.util.JwtProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,12 +29,12 @@ public class AuthenticationController {
 
     private AuthenticationManager authenticationManager;
     private JwtProvider jwtProvider;
-    private UserDetailsServiceImp userDetailsService;
+    private UserDetailsService userDetailsService;
     private JwtTokenRepository jwtTokenRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public AuthenticationController(AuthenticationManager authenticationManager, JwtProvider jwtProvider, UserDetailsServiceImp userDetailsService, JwtTokenRepository jwtTokenRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AuthenticationController(AuthenticationManager authenticationManager, JwtProvider jwtProvider, UserDetailsService userDetailsService, JwtTokenRepository jwtTokenRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
         this.userDetailsService = userDetailsService;
