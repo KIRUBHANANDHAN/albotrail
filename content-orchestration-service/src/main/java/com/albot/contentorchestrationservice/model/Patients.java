@@ -33,8 +33,12 @@ public class Patients {
     private Double weight;
     @ApiModelProperty(value = "Field is used for holding maritalStatus data as a String type.")
     private String maritalStatus;
+    @ApiModelProperty("Field is used for holding gender data as a String type.")
+    private String gender;
     @ApiModelProperty(value = "Field is used for holding mobileNumber data as a BigInteger type.")
     private BigInteger mobileNumber;
+    @ApiModelProperty(value = "Field is used for holding alternateNumber data as a BigInteger type.")
+    private BigInteger alternateNumber;
     @ApiModelProperty(value = "Field is used for holding email data as a String type.")
     private String email;
     @ApiModelProperty(value = "Field is used for holding address data as a Address type.")
@@ -43,13 +47,11 @@ public class Patients {
     private InsuranceDetails insuranceDetails;
     @ApiModelProperty(value = "Field is used for holding EmergencyContactDetails data as a EmergencyContactDetails type.")
     private EmergencyContactDetails emergencyContactDetails;
-    @ApiModelProperty("Field is used for holding gender data as a String type.")
-    private String gender;
     @ApiModelProperty("Field is used for holding dateOfAdmit data as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dateOfAdmit;
     @ApiModelProperty("Field is used for holding dateOfBirth date as a Date type.")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
     @ApiModelProperty("Field is used for holding dateOfDeath date as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
@@ -60,6 +62,6 @@ public class Patients {
     @ApiModelProperty("Field is used for holding dateOfDeathSSN date as a Date type.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date dateOfDeathSSN;
-    @ApiModelProperty("Field is used for holding rowId data as a String type.")
+    @ApiModelProperty("Field is used for holding expireFlag data as a String type.")
     private String expireFlag;
 }

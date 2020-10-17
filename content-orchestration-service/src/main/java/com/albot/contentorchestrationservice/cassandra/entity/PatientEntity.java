@@ -42,6 +42,8 @@ public class PatientEntity {
     private Date dateOfAdmit;
     @Column("mobile_number")
     private BigInteger mobileNumber;
+    @Column("alternate_number")
+    private BigInteger alternateNumber;
     @Column("email")
     private String email;
     @Frozen

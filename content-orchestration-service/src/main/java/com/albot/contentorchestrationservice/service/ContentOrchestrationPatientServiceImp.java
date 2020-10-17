@@ -42,20 +42,20 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
     }
 
     @Override
-    public Patients getBySubjectId(Integer subjectId) {
-        PatientEntity patientEntity = patientRepository.findBySubjectId(subjectId);
-        logger.info("Successfully retrieved patient information based on condition : subjectId : {} and data : {} ", subjectId, patientEntity);
+    public Patients getByPatientId(Integer patientId) {
+        PatientEntity patientEntity = patientRepository.findByPatientId(patientId);
+        logger.info("Successfully retrieved patient information based on condition : patientId : {} and data : {} ", patientId, patientEntity);
         if(!Objects.isNull(patientEntity)) {
             if (patientEntity.getStatusFlag() == Boolean.TRUE) {
-                logger.error("Failed to retrieve patient information based on condition : subjectId : {} because of  data is deleted and  flag status is {}",
-                        subjectId, patientEntity.getStatusFlag());
+                logger.error("Failed to retrieve patient information based on condition : patientId : {} because of  data is deleted and  flag status is {}",
+                        patientId, patientEntity.getStatusFlag());
                 throw new BadStatusRequestException(
-                        String.format("Invalid  subjectId value as a %d, Please provide correct subjectId", subjectId));
+                        String.format("Invalid  patientId value as a %d, Please provide correct patientId", patientId));
             }
         } else{
-            logger.error("Patient information data not found in database based on condition : subjectId = {} ", subjectId);
+            logger.error("Patient information data not found in database based on condition : patientId = {} ", patientId);
             throw new PatientSubjectIdNotFoundException(
-                    String.format("Given subjectId not found in patient information with value  %d", subjectId));
+                    String.format("Given patientId not found in patient information with value  %d", patientId));
         }
         return convertToPatients(
                 patientEntity);
@@ -87,17 +87,17 @@ public class ContentOrchestrationPatientServiceImp implements ContentOrchestrati
     }
 
     @Override
-    public void deletePatientsBySubjectId(Integer subjectId) {
-        PatientEntity patientEntity = patientRepository.findBySubjectId(subjectId);
-        logger.info("Successfully retrieved patient information based on condition : subjectId : {} and data : {} for deleting", subjectId ,patientEntity);
-        if (!Objects.isNull(patientEntity) && subjectId.equals(patientEntity.getSubjectId()) ) {
+    public void deletePatientByPatientId(Integer patientId) {
+        PatientEntity patientEntity = patientRepository.findByPatientId(patientId);
+        logger.info("Successfully retrieved patient information based on condition : patientId : {} and data : {} for deleting", patientId ,patientEntity);
+        if (!Objects.isNull(patientEntity) && patientId.equals(patientEntity.getSubjectId()) ) {
             patientEntity.setStatusFlag(Boolean.TRUE);
             logger.info("Making call to databased for updating flag : {}  and data : {} ", patientEntity.getStatusFlag(), patientEntity);
             patientRepository.save(patientEntity);
-            logger.info("Successfully updated flag in patient service based on condition : subjectId = {} in case of delete", subjectId);
+            logger.info("Successfully updated flag in patient service based on condition : patientId = {} in case of delete", patientId);
         } else {
              throw new PatientSubjectIdNotFoundException(
-                     String.format("Given subjectId with value %d not found in patient information, Please provide correct subjectId", subjectId));
+                     String.format("Given patientId with value %d not found in patient information, Please provide correct patientId", patientId));
         }
     }
 
