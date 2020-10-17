@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.controller;
 
-import com.albot.contentorchestrationservice.dto.CurrentProceduralTerminology;
-import com.albot.contentorchestrationservice.dto.Response;
+import com.albot.contentorchestrationservice.model.CurrentProceduralTerminology;
+import com.albot.contentorchestrationservice.model.Response;
 import com.albot.contentorchestrationservice.service.CurrentProceduralTerminologyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

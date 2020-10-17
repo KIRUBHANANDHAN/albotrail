@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.service;
 
 import com.albot.contentorchestrationservice.cassandra.entity.AdmissionsEntity;
-import com.albot.contentorchestrationservice.dto.Admissions;
+import com.albot.contentorchestrationservice.model.Admissions;
 import com.albot.contentorchestrationservice.cassandra.repository.AdmissionsRepository;
 import com.albot.contentorchestrationservice.exception.AdmissionsHadmIdNotFoundException;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;

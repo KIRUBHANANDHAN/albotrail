@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.controller;
 
-import com.albot.contentorchestrationservice.dto.CptEvent;
-import com.albot.contentorchestrationservice.dto.Response;
+import com.albot.contentorchestrationservice.model.CptEvent;
+import com.albot.contentorchestrationservice.model.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCptEventService;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCptEventServiceImp;
 import io.swagger.annotations.Api;

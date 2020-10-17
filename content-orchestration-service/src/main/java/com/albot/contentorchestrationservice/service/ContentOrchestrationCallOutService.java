@@ -1,6 +1,6 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.dto.CallOut;
+import com.albot.contentorchestrationservice.model.CallOut;
 import java.util.List;
 
 

@@ -1,8 +1,8 @@
 package com.albot.contentorchestrationservice.controller;
 
 
-import com.albot.contentorchestrationservice.dto.CareGivers;
-import com.albot.contentorchestrationservice.dto.Response;
+import com.albot.contentorchestrationservice.model.CareGivers;
+import com.albot.contentorchestrationservice.model.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCareGiversService;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCareGiversServiceImp;
 import io.swagger.annotations.Api;

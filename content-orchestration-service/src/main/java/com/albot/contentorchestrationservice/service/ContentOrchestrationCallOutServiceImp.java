@@ -2,7 +2,7 @@ package com.albot.contentorchestrationservice.service;
 
 import com.albot.contentorchestrationservice.cassandra.entity.CallOutEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.CallOutRepository;
-import com.albot.contentorchestrationservice.dto.CallOut;
+import com.albot.contentorchestrationservice.model.CallOut;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CallOutHadmIdNotFoundException;
 import com.albot.contentorchestrationservice.util.Util;

@@ -2,7 +2,7 @@ package com.albot.contentorchestrationservice.service;
 
 import com.albot.contentorchestrationservice.cassandra.entity.CptEventEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.CptEventRepository;
-import com.albot.contentorchestrationservice.dto.CptEvent;
+import com.albot.contentorchestrationservice.model.CptEvent;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CptEventSubjectIdNotFoundException;
 import com.albot.contentorchestrationservice.util.Util;

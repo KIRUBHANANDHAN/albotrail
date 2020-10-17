@@ -4,11 +4,19 @@ server :
     servlet :
        context-path : "/albot"
     port : 8181
+    #ssl:
+       #key-store: classpath:albot_certificate.jks
+       #key-store-password: password
+       #key-store-type: JKS
+       #key-alias: servercert
+       #key-password: password
 
 spring:
 #   profiles: test
 #   name: test-YAML
 #   environment: dev
+    mvc :
+      log-request-details: true
     data:
       cassandra:
            keyspace-name: "hospital"
@@ -39,3 +47,11 @@ elastic_search:
   username: "elastic"
   password: "password"
   clustername: "dev_cluster"
+
+sns_config:
+  awsAccessKeyId: "AKIAXPEX6XFHKE2EGIP2"
+  secretKey: "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"
+
+jwt_token:
+  securityKey: "secret"
+  tokenExpireTime: 60000

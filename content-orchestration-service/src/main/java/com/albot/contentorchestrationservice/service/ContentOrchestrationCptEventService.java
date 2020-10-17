@@ -1,6 +1,6 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.dto.CptEvent;
+import com.albot.contentorchestrationservice.model.CptEvent;
 import java.util.List;
 
 public interface ContentOrchestrationCptEventService {

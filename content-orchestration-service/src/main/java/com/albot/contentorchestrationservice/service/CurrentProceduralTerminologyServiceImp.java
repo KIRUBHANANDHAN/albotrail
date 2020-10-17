@@ -2,7 +2,7 @@ package com.albot.contentorchestrationservice.service;
 
 import com.albot.contentorchestrationservice.cassandra.entity.CurrentProceduralTerminologyEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.CurrentProceduralTerminologyRepository;
-import com.albot.contentorchestrationservice.dto.CurrentProceduralTerminology;
+import com.albot.contentorchestrationservice.model.CurrentProceduralTerminology;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CurrentProceduralTerminologyRowIdNotFoundException;
 import com.albot.contentorchestrationservice.util.Util;

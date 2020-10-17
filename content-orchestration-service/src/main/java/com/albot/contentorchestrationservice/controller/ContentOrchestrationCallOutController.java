@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.controller;
 
-import com.albot.contentorchestrationservice.dto.CallOut;
-import com.albot.contentorchestrationservice.dto.Response;
+import com.albot.contentorchestrationservice.model.CallOut;
+import com.albot.contentorchestrationservice.model.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCallOutService;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationCallOutServiceImp;
 import io.swagger.annotations.Api;

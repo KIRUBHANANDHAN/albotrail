@@ -1,6 +1,6 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.dto.Admissions;
+import com.albot.contentorchestrationservice.model.Admissions;
 import java.util.List;
 
 public interface ContentOrchestrationAdmissionsService {
