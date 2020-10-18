@@ -1,6 +1,6 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.dto.Patients;
+import com.albot.contentorchestrationservice.model.Patients;
 
 import java.util.List;
 

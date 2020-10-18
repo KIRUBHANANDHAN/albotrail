@@ -1,4 +1,4 @@
-package com.albot.contentorchestrationservice.dto;
+package com.albot.contentorchestrationservice.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;

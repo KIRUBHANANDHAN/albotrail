@@ -2,7 +2,7 @@ package com.albot.contentorchestrationservice.service;
 
 import com.albot.contentorchestrationservice.cassandra.entity.CareGiversEntity;
 import com.albot.contentorchestrationservice.cassandra.repository.CareGiversRepository;
-import com.albot.contentorchestrationservice.dto.CareGivers;
+import com.albot.contentorchestrationservice.model.CareGivers;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CareGiversCgIdNotFoundException;
 import com.albot.contentorchestrationservice.util.Util;

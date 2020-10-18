@@ -1,6 +1,6 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.dto.CurrentProceduralTerminology;
+import com.albot.contentorchestrationservice.model.CurrentProceduralTerminology;
 
 import java.util.List;
 

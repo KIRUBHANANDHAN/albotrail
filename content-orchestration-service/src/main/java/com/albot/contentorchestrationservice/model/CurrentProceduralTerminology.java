@@ -1,4 +1,4 @@
-package com.albot.contentorchestrationservice.dto;
+package com.albot.contentorchestrationservice.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;

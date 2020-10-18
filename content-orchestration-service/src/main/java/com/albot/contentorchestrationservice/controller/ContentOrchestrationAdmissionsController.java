@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.controller;
 
-import com.albot.contentorchestrationservice.dto.Admissions;
-import com.albot.contentorchestrationservice.dto.Response;
+import com.albot.contentorchestrationservice.model.Admissions;
+import com.albot.contentorchestrationservice.model.Response;
 import com.albot.contentorchestrationservice.service.ContentOrchestrationAdmissionsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
