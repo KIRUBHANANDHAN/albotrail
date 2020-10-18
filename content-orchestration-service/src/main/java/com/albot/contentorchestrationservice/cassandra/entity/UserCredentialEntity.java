@@ -40,5 +40,5 @@ public class UserCredentialEntity {
     @Column("wrong_password_count")
     private Integer wrongPasswordCount;
     @Column("mobile_number")
-    private BigInteger userMobileNumber;
+    private String userMobileNumber;
 }
