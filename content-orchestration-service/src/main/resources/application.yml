@@ -54,4 +54,7 @@ sns_config:
 
 jwt_token:
   securityKey: "secret"
+  #Token will expired after 60000 milliseconds
   tokenExpireTime: 60000
+  region: "us-east-1"
+
