@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ContentOrchestrationServiceApplication {
 	private static final Logger logger = LoggerFactory.getLogger(ContentOrchestrationServiceApplication.class);
 	public static void main(String[] args) {
-		logger.info("**********@Bootstrapping  Content Orchestration Service@*************");
 		SpringApplication.run(ContentOrchestrationServiceApplication.class, args);
 	}
 }

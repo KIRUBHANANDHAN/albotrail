@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CurrentProceduralTerminology(CPT).")
-@RequestMapping( "/v1/content-orchestration/cpt")
+@RequestMapping( "/v1/api/cpt")
 @RestController
 public class CurrentProceduralTerminologyController {
 

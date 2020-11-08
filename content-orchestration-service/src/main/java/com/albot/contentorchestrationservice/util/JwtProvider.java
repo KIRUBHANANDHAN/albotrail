@@ -1,6 +1,5 @@
 package com.albot.contentorchestrationservice.util;
 
-import com.albot.contentorchestrationservice.cassandra.repository.JwtTokenRepository;
 import com.albot.contentorchestrationservice.config.JwtConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -19,9 +18,6 @@ public class JwtProvider {
 
     @Autowired
     private JwtConfig jwtConfig;
-
-    @Autowired
-    private JwtTokenRepository jwtTokenRepository;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

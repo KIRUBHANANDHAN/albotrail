@@ -60,8 +60,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests().antMatchers("/api/authenticate").permitAll()
+                .authorizeRequests().antMatchers("/v1/api/authenticate").permitAll()
                 .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**").permitAll()
+                .antMatchers("/v1/api/identify/user/login").permitAll()
+                .antMatchers("/v1/api/reset/password").permitAll()
+                .antMatchers("/v1/api/generate/*").permitAll()
+                .antMatchers("/v1/api/validate/otp").permitAll()
                 .anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

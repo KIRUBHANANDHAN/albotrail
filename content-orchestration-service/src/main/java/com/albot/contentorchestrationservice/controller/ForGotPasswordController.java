@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For ForGotPasswordController.")
-@RequestMapping("/v1/content-orchestration")
+@RequestMapping("/v1/api")
 @RestController
 public class ForGotPasswordController {
 

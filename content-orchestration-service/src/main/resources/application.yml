@@ -15,19 +15,18 @@ spring:
 #   profiles: test
 #   name: test-YAML
 #   environment: dev
-    mvc :
-      log-request-details: true
-    data:
-      cassandra:
-           keyspace-name: "hospital"
-#          cluster-name: "test-cluster"
-           local-datacenter: "datacenter1"
-           contact-points: 127.0.0.1
-           port: 9042
-#          username:
-#          password
-#             schema-action: CREATE_IF_NOT_EXISTS
-
+    datasource:
+       platform: "postgres"
+       url: jdbc:postgresql://localhost:5432/ventilator
+       username: postgres
+       password: admin
+       driver-class-name: org.postgresql.Driver
+    jpa:
+        database-platform: "org.hibernate.dialect.PostgreSQL9Dialect"
+        show_sql: "true"
+        format_sql: "true"
+        # hibernate:
+          #ddl-auto: "create"
 logging:
 #  file:
 #    name: D:/logs/Content-OrchestrationService.log
@@ -37,8 +36,6 @@ logging:
   level:
      org.springframework.web: DEBUG
      com.albot.contentorchestrationservice: DEBUG
-     com.datastax.driver.core.QueryLogger.NORMAL: TRACE
-     com.datastax.driver.core.QueryLogger.SLOW: TRACE
 
 elastic_search:
   host: "localhost"
@@ -55,6 +52,6 @@ sns_config:
 jwt_token:
   securityKey: "secret"
   #Token will expired after 60000 milliseconds
-  tokenExpireTime: 60000
+  tokenExpireTime: 300000
   region: "us-east-1"
 

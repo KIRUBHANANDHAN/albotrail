@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.cassandra.entity.ElasticSearchEntity;
-import com.albot.contentorchestrationservice.cassandra.repository.ElasticSearchRepository;
+import com.albot.contentorchestrationservice.postgres.entity.ElasticSearchEntity;
+import com.albot.contentorchestrationservice.postgres.repository.ElasticSearchRepository;
 import com.albot.contentorchestrationservice.util.Util;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RequestOptions;
@@ -61,7 +61,7 @@ public class ElasticSearchUtility {
                         elasticSearchEntityObj.setIndexId(indexId);
                         elasticSearchEntityObj.setStatus(Boolean.valueOf(Util.Status.FAILED.name()));
                         ElasticSearchEntity elasticSearchEntity =
-                                elasticSearchRepository.insert(elasticSearchEntityObj);
+                                elasticSearchRepository.save(elasticSearchEntityObj);
                         if (!Objects.isNull(elasticSearchEntity)) {
                             logger.info("Successfully inserted failed elastic search request with indexName {} into Cassandra database", indexName);
                         } else {

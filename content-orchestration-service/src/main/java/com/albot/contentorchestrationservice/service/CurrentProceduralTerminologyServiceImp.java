@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.cassandra.entity.CurrentProceduralTerminologyEntity;
-import com.albot.contentorchestrationservice.cassandra.repository.CurrentProceduralTerminologyRepository;
+import com.albot.contentorchestrationservice.postgres.entity.CurrentProceduralTerminologyEntity;
+import com.albot.contentorchestrationservice.postgres.repository.CurrentProceduralTerminologyRepository;
 import com.albot.contentorchestrationservice.model.CurrentProceduralTerminology;
 import com.albot.contentorchestrationservice.exception.BadStatusRequestException;
 import com.albot.contentorchestrationservice.exception.CurrentProceduralTerminologyRowIdNotFoundException;
@@ -67,7 +67,7 @@ public class CurrentProceduralTerminologyServiceImp implements CurrentProcedural
         cptEntity.setStatusFlag(Boolean.FALSE);
         logger.info("Making call to database for saving currentProceduralTerminology information : {}", cptEntity);
         CurrentProceduralTerminology proceduralTerminologyInfo = convertToCpt(
-                proceduralTerminologyRepository.insert(cptEntity));
+                proceduralTerminologyRepository.save(cptEntity));
         try {
             ElasticSearchUtility.restClient(Util.IndexType.CPT.name().toLowerCase(),
                     String.valueOf(proceduralTerminologyInfo.getRowId()), Util.toObjectToJson(proceduralTerminologyInfo));

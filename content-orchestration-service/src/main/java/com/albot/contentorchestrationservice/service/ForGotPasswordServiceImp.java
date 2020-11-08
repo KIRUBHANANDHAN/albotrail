@@ -1,7 +1,7 @@
 package com.albot.contentorchestrationservice.service;
 
-import com.albot.contentorchestrationservice.cassandra.entity.UserCredentialEntity;
-import com.albot.contentorchestrationservice.cassandra.repository.UserCredentialRepository;
+import com.albot.contentorchestrationservice.postgres.entity.UserCredentialEntity;
+import com.albot.contentorchestrationservice.postgres.repository.UserCredentialRepository;
 import com.albot.contentorchestrationservice.exception.InvalidUserCredentials;
 import com.albot.contentorchestrationservice.exception.UserCredentialNotFound;
 import com.albot.contentorchestrationservice.model.IdentifyByLoginUser;

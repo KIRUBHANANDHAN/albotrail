@@ -17,4 +17,6 @@ public class AuthenticationResponse implements Serializable {
     private String accessToken;
     @ApiModelProperty(value = "Field is used for holding tokenType data as a String type.")
     private String tokenType;
+    @ApiModelProperty(value = "Field is used for holding statusCode data as a String type.")
+    private Integer statusCode;
 }

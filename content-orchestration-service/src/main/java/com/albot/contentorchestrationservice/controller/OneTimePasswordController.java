@@ -2,7 +2,7 @@ package com.albot.contentorchestrationservice.controller;
 
 import com.albot.contentorchestrationservice.model.OneTimePassword;
 import com.albot.contentorchestrationservice.model.Response;
-import com.albot.contentorchestrationservice.service.ContentOrchestrationOtpService;
+import com.albot.contentorchestrationservice.service.OtpService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For OneTimePasswordController(OTP).")
-@RequestMapping("/v1/content-orchestration")
+@RequestMapping("/v1/api")
 @RestController
 public class OneTimePasswordController {
 
     private static final Logger logger = LoggerFactory.getLogger(OneTimePasswordController.class);
 
-    private ContentOrchestrationOtpService contentOrchestrationOtpService;
+    private OtpService otpService;
     @Autowired
-    public OneTimePasswordController(ContentOrchestrationOtpService contentOrchestrationOtpService) {
-        this.contentOrchestrationOtpService = contentOrchestrationOtpService;
+    public OneTimePasswordController(OtpService otpService) {
+        this.otpService = otpService;
     }
 
     //get an user name from request param.
@@ -34,7 +34,7 @@ public class OneTimePasswordController {
         logger.info("Generate otp for given  username {}",userName);
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
-                .setData(contentOrchestrationOtpService.getRandomNumber(userName)));
+                .setData(otpService.getRandomNumber(userName)));
     }
 
     //Validate Given one time password.
@@ -45,6 +45,6 @@ public class OneTimePasswordController {
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully validate one time password information for given user "+ otp.getUserName())
-               .setData(contentOrchestrationOtpService.validateGivenOtp(otp)));
+               .setData(otpService.validateGivenOtp(otp)));
     }
 }
