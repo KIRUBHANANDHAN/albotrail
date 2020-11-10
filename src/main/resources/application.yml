@@ -1,0 +1,55 @@
+server:
+  servlet:
+    context-path: "/albot"
+  port: 8181
+    #ssl:
+    #key-store: classpath:albot_certificate.jks
+    #key-store-password: password
+    #key-store-type: JKS
+    #key-alias: servercert
+  #key-password: password
+
+spring:
+  #   profiles: test
+  #   name: test-YAML
+  #   environment: dev
+  datasource:
+    platform: "postgres"
+    url: jdbc:postgresql://localhost:5432/ventilator
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show_sql: true
+    format_sql: true
+    hibernate:
+    ddl-auto: update
+logging:
+  #  file:
+  #    name: D:/logs/Content-OrchestrationService.log
+  #    pattern:
+  #      console: "%d %-5level %logger : %msg%n"
+  #      file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: DEBUG
+    com.albot.contentorchestrationservice: DEBUG
+
+elastic_search:
+  host: "localhost"
+  schema: "http"
+  port: 9200
+  username: "elastic"
+  password: "password"
+  clustername: "dev_cluster"
+
+sns_config:
+  awsAccessKeyId: "AKIAXPEX6XFHKE2EGIP2"
+  secretKey: "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"
+
+jwt_token:
+  securityKey: "secret"
+  #Token will expired after 60000 milliseconds
+  tokenExpireTime: 300000
+  region: "us-east-1"
+
