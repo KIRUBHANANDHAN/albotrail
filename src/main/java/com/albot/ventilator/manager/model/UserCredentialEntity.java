@@ -9,11 +9,10 @@ import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
+
 @ToString
 @Builder(toBuilder = true)
 @EqualsAndHashCode

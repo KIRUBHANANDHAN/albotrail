@@ -3,8 +3,8 @@ package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.CareGivers;
 import com.albot.ventilator.manager.model.Response;
-import com.albot.ventilator.manager.service.CareGiversServiceImp;
-import com.albot.ventilator.manager.service.Impl.CareGiversService;
+import com.albot.ventilator.manager.service.CareGiversService;
+import com.albot.ventilator.manager.service.impl.CareGiversServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

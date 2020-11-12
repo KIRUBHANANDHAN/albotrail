@@ -10,8 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-@Getter
-@Setter
+@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode

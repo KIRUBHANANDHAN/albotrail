@@ -2,7 +2,7 @@ package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.CurrentProceduralTerminology;
 import com.albot.ventilator.manager.model.Response;
-import com.albot.ventilator.manager.service.Impl.CurrentProceduralTerminologyService;
+import com.albot.ventilator.manager.service.CurrentProceduralTerminologyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

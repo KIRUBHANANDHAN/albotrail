@@ -1,11 +1,11 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.BadStatusRequestException;
 import com.albot.ventilator.manager.exceptions.CallOutHadmIdNotFoundException;
 import com.albot.ventilator.manager.model.CallOut;
 import com.albot.ventilator.manager.model.CallOutEntity;
 import com.albot.ventilator.manager.repos.postgres.CallOutRepository;
-import com.albot.ventilator.manager.service.Impl.CallOutService;
+import com.albot.ventilator.manager.service.CallOutService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

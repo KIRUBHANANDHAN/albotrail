@@ -1,4 +1,4 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.InvalidUserCredentials;
 import com.albot.ventilator.manager.exceptions.UserCredentialNotFound;
@@ -6,7 +6,7 @@ import com.albot.ventilator.manager.model.IdentifyByLoginUser;
 import com.albot.ventilator.manager.model.ResetUserPassword;
 import com.albot.ventilator.manager.model.UserCredentialEntity;
 import com.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
-import com.albot.ventilator.manager.service.Impl.ForGotPasswordService;
+import com.albot.ventilator.manager.service.ForGotPasswordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -24,10 +24,10 @@ public class ForGotPasswordServiceImp implements ForGotPasswordService {
 
 
     @Override
-    public IdentifyByLoginUser getIdentifyByLoginUser(IdentifyByLoginUser identifyByLoginUser) {
+    public IdentifyByLoginUser getIdentifyByLoginUser(String userName) {
         UserCredentialEntity userCredentialEntity
                 = userCredentialRepository
-                .getByUserName(identifyByLoginUser.getUserName().toLowerCase());
+                .getByUserName(userName.toLowerCase());
         if (!Objects.isNull(userCredentialEntity)) {
             if (userCredentialEntity.getIsActiveUser().equals(Boolean.FALSE)) {
                 logger.error("Found given IdentifyByLoginUser user {} is not active User ", userCredentialEntity.getUserName());
@@ -39,8 +39,8 @@ public class ForGotPasswordServiceImp implements ForGotPasswordService {
             identifyByLoginUser1.setUserMobileNum(userCredentialEntity.getUserMobileNumber());
             return identifyByLoginUser1;
         } else {
-            logger.error("Given IdentifyByLoginUser user {} not found", identifyByLoginUser.getUserName());
-            throw new UserCredentialNotFound("Given User name " + identifyByLoginUser.getUserName() + " not found");
+            logger.error("Given IdentifyByLoginUser user {} not found", userName);
+            throw new UserCredentialNotFound("Given User name " + userName + " not found");
         }
     }
 

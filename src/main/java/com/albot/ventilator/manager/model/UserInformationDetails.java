@@ -8,8 +8,8 @@ import lombok.*;
 import java.math.BigInteger;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode

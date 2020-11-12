@@ -1,11 +1,11 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.BadStatusRequestException;
 import com.albot.ventilator.manager.exceptions.CptEventSubjectIdNotFoundException;
 import com.albot.ventilator.manager.model.CptEvent;
 import com.albot.ventilator.manager.model.CptEventEntity;
 import com.albot.ventilator.manager.repos.postgres.CptEventRepository;
-import com.albot.ventilator.manager.service.Impl.CptEventService;
+import com.albot.ventilator.manager.service.CptEventService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.albot.ventilator.manager.service.Impl;
+package com.albot.ventilator.manager.service;
 
 import com.albot.ventilator.manager.model.UserDemoGraphics;
 import com.albot.ventilator.manager.model.UserDemoGraphicsRegistration;

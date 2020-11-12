@@ -2,7 +2,7 @@ package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.OneTimePassword;
 import com.albot.ventilator.manager.model.Response;
-import com.albot.ventilator.manager.service.Impl.OtpService;
+import com.albot.ventilator.manager.service.OtpService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

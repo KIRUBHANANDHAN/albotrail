@@ -1,10 +1,10 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.model.UserDemoGraphics;
 import com.albot.ventilator.manager.model.UserDemoGraphicsEntity;
 import com.albot.ventilator.manager.model.UserDemoGraphicsRegistration;
 import com.albot.ventilator.manager.repos.postgres.UserDemoGraphicsRepository;
-import com.albot.ventilator.manager.service.Impl.UserDemoGraphicsService;
+import com.albot.ventilator.manager.service.UserDemoGraphicsService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

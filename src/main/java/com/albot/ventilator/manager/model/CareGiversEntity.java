@@ -9,8 +9,6 @@ import java.math.BigInteger;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @ToString
 @Builder(toBuilder = true)
 @EqualsAndHashCode

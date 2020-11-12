@@ -1,4 +1,4 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.FailedToSendOneTimePassword;
 import com.albot.ventilator.manager.exceptions.FailedToValidateOneTimePassword;
@@ -6,7 +6,7 @@ import com.albot.ventilator.manager.exceptions.UserCredentialNotFound;
 import com.albot.ventilator.manager.model.OneTimePassword;
 import com.albot.ventilator.manager.model.UserCredentialEntity;
 import com.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
-import com.albot.ventilator.manager.service.Impl.OtpService;
+import com.albot.ventilator.manager.service.OtpService;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.model.MessageAttributeValue;
 import com.amazonaws.services.sns.model.PublishRequest;

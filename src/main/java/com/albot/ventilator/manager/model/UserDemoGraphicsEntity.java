@@ -2,10 +2,9 @@ package com.albot.ventilator.manager.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
@@ -13,8 +12,7 @@ import java.math.BigInteger;
 import java.util.Set;
 
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @EqualsAndHashCode
 @JsonSerialize

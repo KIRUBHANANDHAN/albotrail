@@ -3,15 +3,14 @@ package com.albot.ventilator.manager.model;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigInteger;
 
-@Getter
-@Setter
+@Data
+
 @NoArgsConstructor
 @EqualsAndHashCode
 @JsonSerialize

@@ -1,11 +1,11 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.BadStatusRequestException;
 import com.albot.ventilator.manager.exceptions.CurrentProceduralTerminologyRowIdNotFoundException;
 import com.albot.ventilator.manager.model.CurrentProceduralTerminology;
 import com.albot.ventilator.manager.model.CurrentProceduralTerminologyEntity;
 import com.albot.ventilator.manager.repos.postgres.CurrentProceduralTerminologyRepository;
-import com.albot.ventilator.manager.service.Impl.CurrentProceduralTerminologyService;
+import com.albot.ventilator.manager.service.CurrentProceduralTerminologyService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

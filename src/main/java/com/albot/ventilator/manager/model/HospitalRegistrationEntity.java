@@ -3,10 +3,9 @@ package com.albot.ventilator.manager.model;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -15,8 +14,8 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+
 @NoArgsConstructor
 @EqualsAndHashCode
 @JsonSerialize

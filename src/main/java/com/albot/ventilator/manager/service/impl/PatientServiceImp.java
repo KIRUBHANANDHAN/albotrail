@@ -1,11 +1,11 @@
-package com.albot.ventilator.manager.service;
+package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.BadStatusRequestException;
 import com.albot.ventilator.manager.exceptions.PatientSubjectIdNotFoundException;
 import com.albot.ventilator.manager.model.PatientEntity;
 import com.albot.ventilator.manager.model.Patients;
 import com.albot.ventilator.manager.repos.postgres.PatientRepository;
-import com.albot.ventilator.manager.service.Impl.PatientService;
+import com.albot.ventilator.manager.service.PatientService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

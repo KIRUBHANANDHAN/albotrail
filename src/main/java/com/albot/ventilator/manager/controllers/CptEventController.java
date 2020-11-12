@@ -2,8 +2,8 @@ package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.CptEvent;
 import com.albot.ventilator.manager.model.Response;
-import com.albot.ventilator.manager.service.CptEventServiceImp;
-import com.albot.ventilator.manager.service.Impl.CptEventService;
+import com.albot.ventilator.manager.service.CptEventService;
+import com.albot.ventilator.manager.service.impl.CptEventServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

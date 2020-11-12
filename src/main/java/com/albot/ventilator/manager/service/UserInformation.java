@@ -1,4 +1,4 @@
-package com.albot.ventilator.manager.service.Impl;
+package com.albot.ventilator.manager.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 

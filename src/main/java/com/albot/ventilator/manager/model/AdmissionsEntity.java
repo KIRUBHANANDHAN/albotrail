@@ -12,8 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+
 @ToString
 @Builder(toBuilder = true)
 @EqualsAndHashCode

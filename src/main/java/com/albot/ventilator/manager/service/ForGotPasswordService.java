@@ -1,11 +1,11 @@
-package com.albot.ventilator.manager.service.Impl;
+package com.albot.ventilator.manager.service;
 
 import com.albot.ventilator.manager.model.IdentifyByLoginUser;
 import com.albot.ventilator.manager.model.ResetUserPassword;
 
 public interface ForGotPasswordService {
 
-    IdentifyByLoginUser getIdentifyByLoginUser(IdentifyByLoginUser identifyByLoginUser);
+    IdentifyByLoginUser getIdentifyByLoginUser(String userName);
 
     ResetUserPassword resetPassword(ResetUserPassword forGotPassword);
 }

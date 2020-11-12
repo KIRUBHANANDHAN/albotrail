@@ -2,8 +2,8 @@ package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.Patients;
 import com.albot.ventilator.manager.model.Response;
-import com.albot.ventilator.manager.service.Impl.PatientService;
-import com.albot.ventilator.manager.service.PatientServiceImp;
+import com.albot.ventilator.manager.service.PatientService;
+import com.albot.ventilator.manager.service.impl.PatientServiceImp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
