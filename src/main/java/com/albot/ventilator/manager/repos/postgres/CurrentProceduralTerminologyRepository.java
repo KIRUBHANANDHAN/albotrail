@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.repos.postgres;
 
-import com.albot.ventilator.manager.model.CurrentProceduralTerminologyEntity;
+import com.albot.ventilator.manager.model.dto.CurrentProceduralTerminologyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

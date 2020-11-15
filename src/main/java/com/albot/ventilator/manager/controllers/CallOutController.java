@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.controllers;
 
-import com.albot.ventilator.manager.model.CallOut;
-import com.albot.ventilator.manager.model.Response;
+import com.albot.ventilator.manager.model.web.CallOut;
+import com.albot.ventilator.manager.model.web.Response;
 import com.albot.ventilator.manager.service.CallOutService;
 import com.albot.ventilator.manager.service.impl.CallOutServiceImp;
 import io.swagger.annotations.ApiOperation;

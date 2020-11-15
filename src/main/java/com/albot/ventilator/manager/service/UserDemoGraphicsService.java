@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.UserDemoGraphics;
-import com.albot.ventilator.manager.model.UserDemoGraphicsRegistration;
+import com.albot.ventilator.manager.model.web.UserDemoGraphics;
+import com.albot.ventilator.manager.model.web.UserDemoGraphicsRegistration;
 
 
 public interface UserDemoGraphicsService {

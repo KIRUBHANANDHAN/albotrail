@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.CallOut;
+import com.albot.ventilator.manager.model.web.CallOut;
 
 import java.util.List;
 

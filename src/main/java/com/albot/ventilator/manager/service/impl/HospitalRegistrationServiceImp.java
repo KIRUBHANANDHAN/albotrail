@@ -1,8 +1,8 @@
 package com.albot.ventilator.manager.service.impl;
 
 
-import com.albot.ventilator.manager.model.HospitalRegistration;
-import com.albot.ventilator.manager.model.HospitalRegistrationEntity;
+import com.albot.ventilator.manager.model.web.HospitalRegistration;
+import com.albot.ventilator.manager.model.dto.HospitalRegistrationEntity;
 import com.albot.ventilator.manager.repos.postgres.HospitalRegistrationRepository;
 import com.albot.ventilator.manager.service.HospitalRegistrationService;
 import lombok.extern.slf4j.Slf4j;

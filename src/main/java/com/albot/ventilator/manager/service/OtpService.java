@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.OneTimePassword;
+import com.albot.ventilator.manager.model.web.OneTimePassword;
 
 
 public interface OtpService {

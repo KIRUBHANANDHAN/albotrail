@@ -2,8 +2,8 @@ package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.BadStatusRequestException;
 import com.albot.ventilator.manager.exceptions.CareGiversCgIdNotFoundException;
-import com.albot.ventilator.manager.model.CareGivers;
-import com.albot.ventilator.manager.model.CareGiversEntity;
+import com.albot.ventilator.manager.model.web.CareGivers;
+import com.albot.ventilator.manager.model.dto.CareGiversEntity;
 import com.albot.ventilator.manager.repos.postgres.CareGiversRepository;
 import com.albot.ventilator.manager.service.CareGiversService;
 import lombok.extern.slf4j.Slf4j;

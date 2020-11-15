@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.IdentifyByLoginUser;
-import com.albot.ventilator.manager.model.ResetUserPassword;
+import com.albot.ventilator.manager.model.web.IdentifyByLoginUser;
+import com.albot.ventilator.manager.model.web.ResetUserPassword;
 
 public interface ForGotPasswordService {
 

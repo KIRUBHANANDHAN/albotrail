@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.controllers;
 
-import com.albot.ventilator.manager.model.Admissions;
-import com.albot.ventilator.manager.model.Response;
+import com.albot.ventilator.manager.model.web.Admissions;
+import com.albot.ventilator.manager.model.web.Response;
 import com.albot.ventilator.manager.service.AdmissionsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

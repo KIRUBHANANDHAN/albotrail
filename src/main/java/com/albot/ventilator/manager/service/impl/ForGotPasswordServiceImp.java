@@ -2,9 +2,9 @@ package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.InvalidUserCredentials;
 import com.albot.ventilator.manager.exceptions.UserCredentialNotFound;
-import com.albot.ventilator.manager.model.IdentifyByLoginUser;
-import com.albot.ventilator.manager.model.ResetUserPassword;
-import com.albot.ventilator.manager.model.UserCredentialEntity;
+import com.albot.ventilator.manager.model.web.IdentifyByLoginUser;
+import com.albot.ventilator.manager.model.web.ResetUserPassword;
+import com.albot.ventilator.manager.model.dto.UserCredentialEntity;
 import com.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
 import com.albot.ventilator.manager.service.ForGotPasswordService;
 import org.slf4j.Logger;

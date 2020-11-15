@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.CurrentProceduralTerminology;
+import com.albot.ventilator.manager.model.web.CurrentProceduralTerminology;
 
 import java.util.List;
 

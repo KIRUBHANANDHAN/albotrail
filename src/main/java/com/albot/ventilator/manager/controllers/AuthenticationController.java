@@ -1,8 +1,8 @@
 package com.albot.ventilator.manager.controllers;
 
-import com.albot.ventilator.manager.model.AuthenticationRequest;
-import com.albot.ventilator.manager.model.AuthenticationResponse;
-import com.albot.ventilator.manager.model.UserCredentialEntity;
+import com.albot.ventilator.manager.model.web.AuthenticationRequest;
+import com.albot.ventilator.manager.model.web.AuthenticationResponse;
+import com.albot.ventilator.manager.model.dto.UserCredentialEntity;
 import com.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
 import com.albot.ventilator.manager.util.JwtProvider;
 import org.slf4j.Logger;

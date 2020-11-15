@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.controllers;
 
-import com.albot.ventilator.manager.model.CptEvent;
-import com.albot.ventilator.manager.model.Response;
+import com.albot.ventilator.manager.model.web.CptEvent;
+import com.albot.ventilator.manager.model.web.Response;
 import com.albot.ventilator.manager.service.CptEventService;
 import com.albot.ventilator.manager.service.impl.CptEventServiceImp;
 import io.swagger.annotations.Api;

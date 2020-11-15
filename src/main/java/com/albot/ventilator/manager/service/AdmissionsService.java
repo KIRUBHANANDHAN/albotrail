@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.Admissions;
+import com.albot.ventilator.manager.model.web.Admissions;
 
 import java.util.List;
 

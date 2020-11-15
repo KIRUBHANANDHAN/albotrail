@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.service.impl;
 
-import com.albot.ventilator.manager.model.UserCredentialEntity;
-import com.albot.ventilator.manager.model.UserInformationDetails;
+import com.albot.ventilator.manager.model.dto.UserCredentialEntity;
+import com.albot.ventilator.manager.model.web.UserInformationDetails;
 import com.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
 import com.albot.ventilator.manager.service.UserInformation;
 import lombok.extern.slf4j.Slf4j;

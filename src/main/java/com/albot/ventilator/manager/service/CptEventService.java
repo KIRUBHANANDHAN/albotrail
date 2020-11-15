@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.CptEvent;
+import com.albot.ventilator.manager.model.web.CptEvent;
 
 import java.util.List;
 

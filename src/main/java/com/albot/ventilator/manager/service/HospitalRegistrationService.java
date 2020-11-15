@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.service;
 
-import com.albot.ventilator.manager.model.HospitalRegistration;
+import com.albot.ventilator.manager.model.web.HospitalRegistration;
 
 public interface HospitalRegistrationService {
 

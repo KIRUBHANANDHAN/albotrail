@@ -2,8 +2,8 @@ package com.albot.ventilator.manager.service.impl;
 
 import com.albot.ventilator.manager.exceptions.AdmissionsHadmIdNotFoundException;
 import com.albot.ventilator.manager.exceptions.BadStatusRequestException;
-import com.albot.ventilator.manager.model.Admissions;
-import com.albot.ventilator.manager.model.AdmissionsEntity;
+import com.albot.ventilator.manager.model.web.Admissions;
+import com.albot.ventilator.manager.model.dto.AdmissionsEntity;
 import com.albot.ventilator.manager.repos.postgres.AdmissionsRepository;
 import com.albot.ventilator.manager.service.AdmissionsService;
 import lombok.extern.slf4j.Slf4j;

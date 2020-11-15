@@ -1,6 +1,6 @@
 package com.albot.ventilator.manager.repos.postgres;
 
-import com.albot.ventilator.manager.model.PatientEntity;
+import com.albot.ventilator.manager.model.dto.PatientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

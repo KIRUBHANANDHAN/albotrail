@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.controllers;
 
-import com.albot.ventilator.manager.model.CurrentProceduralTerminology;
-import com.albot.ventilator.manager.model.Response;
+import com.albot.ventilator.manager.model.web.CurrentProceduralTerminology;
+import com.albot.ventilator.manager.model.web.Response;
 import com.albot.ventilator.manager.service.CurrentProceduralTerminologyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

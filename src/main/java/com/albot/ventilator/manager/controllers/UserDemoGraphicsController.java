@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.controllers;
 
-import com.albot.ventilator.manager.model.Response;
-import com.albot.ventilator.manager.model.UserDemoGraphicsRegistration;
+import com.albot.ventilator.manager.model.web.Response;
+import com.albot.ventilator.manager.model.web.UserDemoGraphicsRegistration;
 import com.albot.ventilator.manager.service.UserDemoGraphicsService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,8 @@
 package com.albot.ventilator.manager.controllers;
 
 
-import com.albot.ventilator.manager.model.ResetUserPassword;
-import com.albot.ventilator.manager.model.Response;
+import com.albot.ventilator.manager.model.web.ResetUserPassword;
+import com.albot.ventilator.manager.model.web.Response;
 import com.albot.ventilator.manager.service.ForGotPasswordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

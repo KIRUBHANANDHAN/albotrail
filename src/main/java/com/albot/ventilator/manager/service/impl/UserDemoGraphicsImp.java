@@ -1,8 +1,8 @@
 package com.albot.ventilator.manager.service.impl;
 
-import com.albot.ventilator.manager.model.UserDemoGraphics;
-import com.albot.ventilator.manager.model.UserDemoGraphicsEntity;
-import com.albot.ventilator.manager.model.UserDemoGraphicsRegistration;
+import com.albot.ventilator.manager.model.web.UserDemoGraphics;
+import com.albot.ventilator.manager.model.dto.UserDemoGraphicsEntity;
+import com.albot.ventilator.manager.model.web.UserDemoGraphicsRegistration;
 import com.albot.ventilator.manager.repos.postgres.UserDemoGraphicsRepository;
 import com.albot.ventilator.manager.service.UserDemoGraphicsService;
 import org.modelmapper.ModelMapper;
