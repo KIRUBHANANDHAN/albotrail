@@ -2,6 +2,7 @@ package com.albot.ventilator.manager.model.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.swagger.models.auth.In;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,12 +19,12 @@ import java.math.BigInteger;
 @JsonDeserialize
 @Entity
 @TypeDef(name = "HospitalInfoLineEntity", typeClass = HospitalInfoLineEntity.class)
-@Table(name = "hospital_info_master", uniqueConstraints = {@UniqueConstraint(columnNames = {"HOSPID"})})
+@Table(name = "hospital_info_master", uniqueConstraints = {@UniqueConstraint(columnNames = {"id"})})
 public class HospitalInfoLineEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "HOSPID", columnDefinition = "bigserial", nullable = false, updatable = false)
-    private BigInteger hosp_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id",  nullable = false, updatable = false)
+    private Integer id;
     @Column(name = "HOSPNAME")
     private String Hosp_name;
     @Column(name = "CONTACT")

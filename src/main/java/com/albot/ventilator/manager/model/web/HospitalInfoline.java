@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @JsonPropertyOrder
 public class HospitalInfoline {
     @ApiModelProperty(value = "Field is used for holding Hospital data as a String type.", required = true)
-    private String hosp_id;
+    private String id;
     @ApiModelProperty(value = "Field is used for holding Hospital contact String type.", required = true)
     private String contact_info;
 

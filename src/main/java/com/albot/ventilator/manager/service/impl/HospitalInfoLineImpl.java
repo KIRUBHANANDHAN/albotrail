@@ -24,7 +24,7 @@ public class HospitalInfoLineImpl implements HospitalInfoLineService {
     @Override
     public HospitalInfoline getByHospID(String hosp_id) {
 
-        HospitalInfoLineEntity hospitalInfolineEntity = hospitalInfolineRepository.findEntity(Long.parseLong(hosp_id));
+        HospitalInfoLineEntity hospitalInfolineEntity = hospitalInfolineRepository.findByid(Integer.parseInt(hosp_id));
         return convertToUserDemoGraphics(hospitalInfolineEntity);
     }
 
