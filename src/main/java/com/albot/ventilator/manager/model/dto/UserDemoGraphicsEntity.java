@@ -24,7 +24,7 @@ public class UserDemoGraphicsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", columnDefinition = "bigserial", nullable = false, updatable = false)
-    private BigInteger userId;
+    private long userId;
     @Column(name = "name")
     private String name;
     @Column(name = "gender")
