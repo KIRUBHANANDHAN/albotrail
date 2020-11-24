@@ -41,10 +41,6 @@ public class UserDemoGraphicsEntity {
     private Integer workExperience;
     @Column(name = "specialty")
     private String specialty;
-    //@OneToMany(mappedBy = "userDemoGraphicsEntity", cascade = CascadeType.ALL)
-    @OneToMany(targetEntity = PatientEntity.class, cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "id", referencedColumnName = "user_id")
-    @EqualsAndHashCode.Exclude
-    private Set<PatientEntity> patientEntity;
+    @OneToMany(mappedBy = "userDemoGraphicsEntity")
+    @EqualsAndHashCode.Exclude private Set<PatientEntity> patientEntity;
 }

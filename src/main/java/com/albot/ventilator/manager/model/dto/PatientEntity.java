@@ -69,7 +69,7 @@ public class PatientEntity {
     private String expireFlag;
     @Column(name = "status_flag")
     private Boolean statusFlag;
-    //@ManyToOne(targetEntity = UserDemoGraphicsEntity.class)
-    //@JoinColumn(name = "user_id")
-    //@EqualsAndHashCode.Exclude private UserDemoGraphicsEntity userDemoGraphicsEntity;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable=false)
+    @EqualsAndHashCode.Exclude private UserDemoGraphicsEntity userDemoGraphicsEntity;
 }
