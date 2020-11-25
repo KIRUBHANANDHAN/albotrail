@@ -54,7 +54,9 @@ public class AuthenticationController {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
             logger.error("Incorrect username or password : {}", e.getMessage());
-            throw new Exception("Incorrect username or password", e);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).body(new AuthenticationResponse(HttpStatus.UNAUTHORIZED.value(), "Incorrect username or password"));
+            //throw new Exception("Incorrect username or password", e);
+
         }
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
@@ -64,6 +66,6 @@ public class AuthenticationController {
         userCredentialEntity.setUserName(authenticationRequest.getUsername());
         userCredentialEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(authenticationRequest.getPassword()));
         userCredentialRepository.save(userCredentialEntity);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt, "Bearer", HttpStatus.OK.value()));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, "Bearer", HttpStatus.OK.value(),"success"));
     }
 }
