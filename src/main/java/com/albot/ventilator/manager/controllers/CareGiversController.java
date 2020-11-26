@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Slf4j
-@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For CareGivers.")
+@Api(value = "CareGivers", description = "Content Orchestration Operations For CareGivers.", tags = { "CareGivers" })
 @RequestMapping("/v1/api/caregivers")
 @RestController
 public class CareGiversController {

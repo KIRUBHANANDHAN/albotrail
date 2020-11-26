@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For OneTimePasswordController(OTP).")
+@Api(value = "OneTimePassword", description = "Content Orchestration Operations For OneTimePasswordController(OTP).", tags = { "OneTimePassword" })
 @RequestMapping("/v1/api")
 @RestController
 public class OneTimePasswordController {

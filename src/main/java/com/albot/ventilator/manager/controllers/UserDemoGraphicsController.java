@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For UserDemoGraphicsController.")
+@Api(value = "UserDemoGraphics", description = "Content Orchestration Operations For UserDemoGraphicsController.",tags = { "UserDemoGraphics" })
 @RequestMapping("/v1/api/user")
 @RestController
 public class UserDemoGraphicsController {
