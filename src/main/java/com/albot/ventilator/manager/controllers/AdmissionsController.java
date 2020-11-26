@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For Admissions.")
+@Api(value = "Admissions", description = "Content Orchestration Operations For Admissions.",tags = { "Admissions" })
 @RequestMapping("/v1/api/admissions")
 @RestController
 public class AdmissionsController {

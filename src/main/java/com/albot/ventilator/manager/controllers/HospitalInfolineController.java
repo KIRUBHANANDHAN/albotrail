@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Api(value = "ContentOrchestrations", description = "Content Orchestration Operations For HospitalInfolineController.")
+@Api(value = "HospitalInfoline", description = "Content Orchestration Operations For HospitalInfolineController.",tags = { "HospitalInfoline" })
 @RequestMapping("/v1/api/hosp")
 @RestController
 public class HospitalInfolineController {
