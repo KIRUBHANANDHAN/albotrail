@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "UserDemoGraphics", description = "Content Orchestration Operations For UserDemoGraphicsController.",tags = { "UserDemoGraphics" })
 @RequestMapping("/v1/api/user")
 @RestController
-public class UserDemoGraphicsController {
+public class UserController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDemoGraphicsController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserDemoGraphicsService userDemoGraphicsService;
 
     @Autowired
-    public UserDemoGraphicsController(UserDemoGraphicsService userDemoGraphicsService) {
+    public UserController(UserDemoGraphicsService userDemoGraphicsService) {
         this.userDemoGraphicsService = userDemoGraphicsService;
     }
 
@@ -44,7 +44,7 @@ public class UserDemoGraphicsController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Response> updateDemoGraphics(@RequestBody UserDemoGraphicsRegistration userDemoGraphicsRegistration) {
+    public ResponseEntity<Response> updateUserDemoGraphics(@RequestBody UserDemoGraphicsRegistration userDemoGraphicsRegistration) {
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully update a user information")
