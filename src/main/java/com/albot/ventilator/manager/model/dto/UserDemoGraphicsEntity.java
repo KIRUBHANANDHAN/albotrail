@@ -19,7 +19,7 @@ import java.util.Set;
 @JsonDeserialize
 @Entity
 @TypeDef(name = "UserDemoGraphicsEntity", typeClass = UserDemoGraphicsEntity.class)
-@Table(name = "user_demo_graphics", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id"})})
+@Table(name = "user_demo_graphics")
 public class UserDemoGraphicsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

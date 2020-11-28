@@ -27,12 +27,12 @@ public class UserDemoGraphicsController {
         this.userDemoGraphicsService = userDemoGraphicsService;
     }
 
-    @GetMapping("/{username}")
-    public ResponseEntity<Response> getUserDemoGraphics(@PathVariable("username") String username) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> getUserDemoGraphics(@PathVariable("id") Long id) {
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving a user information by username")
-                .setData(userDemoGraphicsService.getByUserName(username)));
+                .setData(userDemoGraphicsService.getById(id)));
     }
 
     @PostMapping("/create")
@@ -41,5 +41,13 @@ public class UserDemoGraphicsController {
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully created a user information")
                 .setData(userDemoGraphicsService.saveUserDemoGraphicsRegistration(userDemoGraphicsRegistration)));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Response> updateDemoGraphics(@RequestBody UserDemoGraphicsRegistration userDemoGraphicsRegistration) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully update a user information")
+                .setData(userDemoGraphicsService.updateUserDemoGraphicsRegistration(userDemoGraphicsRegistration)));
     }
 }
