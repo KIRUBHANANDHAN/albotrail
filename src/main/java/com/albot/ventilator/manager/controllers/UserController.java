@@ -9,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeEditor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Api(value = "UserDemoGraphics", description = "Content Orchestration Operations For UserDemoGraphicsController.",tags = { "UserDemoGraphics" })
@@ -49,5 +52,13 @@ public class UserController {
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully update a user information")
                 .setData(userDemoGraphicsService.updateUserDemoGraphicsRegistration(userDemoGraphicsRegistration)));
+    }
+
+    @PostMapping(value = "/profile/{id}")
+    public ResponseEntity<Response> userProfileImage(@RequestParam("imageFile") MultipartFile multipartFile, @PathVariable("id") Long id) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully uploaded a user profile image")
+                .setData(userDemoGraphicsService.uploadUserProfileImage(multipartFile)));
     }
 }
