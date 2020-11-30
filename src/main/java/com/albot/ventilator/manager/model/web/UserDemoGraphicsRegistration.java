@@ -22,6 +22,8 @@ import java.math.BigInteger;
 @JsonPropertyOrder
 public class UserDemoGraphicsRegistration {
 
+    @ApiModelProperty(value = "Field is used for holding id data as a Long type.", required = true)
+    private Long id;
     @ApiModelProperty(value = "Field is used for holding userName data as a String type.", required = true)
     private String name;
     @ApiModelProperty(value = "Field is used for holding emailId data as a String type.", required = true)
