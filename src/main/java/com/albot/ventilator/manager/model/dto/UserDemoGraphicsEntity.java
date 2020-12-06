@@ -31,6 +31,10 @@ public class UserDemoGraphicsEntity {
     private String gender;
     @Column(name = "email_id")
     private String email;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "confirmPassword")
+    private String confirmPassword;
     @Column(name = "phone_number")
     private BigInteger phoneNumber;
     @Column(name = "qualification")

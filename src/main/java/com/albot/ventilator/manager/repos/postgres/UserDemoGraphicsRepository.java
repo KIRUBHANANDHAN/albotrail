@@ -4,10 +4,9 @@ import com.albot.ventilator.manager.model.dto.UserDemoGraphicsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
+public interface UserDemoGraphicsRepository extends JpaRepository<UserDemoGraphicsEntity, String> {
 
-public interface UserDemoGraphicsRepository extends JpaRepository<UserDemoGraphicsEntity, Long> {
-
-    UserDemoGraphicsEntity findByUserId(Long id);
+    UserDemoGraphicsEntity findAllByName(String userName);
 
     UserDemoGraphicsEntity save(UserDemoGraphicsEntity userDemoGraphicsEntity);
 }

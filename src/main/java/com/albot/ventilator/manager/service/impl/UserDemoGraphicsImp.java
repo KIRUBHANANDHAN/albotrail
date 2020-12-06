@@ -29,9 +29,9 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
     }
 
     @Override
-    public UserDemoGraphics getById(Long id) {
+    public UserDemoGraphics getByUserName(String userName) {
         UserDemoGraphicsEntity userDemoGraphicsEntity =
-                userDemoGraphicsRepository.findByUserId(id);
+                userDemoGraphicsRepository.findAllByName(userName);
         return convertToUserDemoGraphics(userDemoGraphicsEntity);
     }
 
@@ -44,13 +44,15 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
 
     @Override
     public UserDemoGraphicsRegistration updateUserDemoGraphicsRegistration(UserDemoGraphicsRegistration userDemoGraphics) {
-        UserDemoGraphicsEntity userDemoGraphicsEntity = userDemoGraphicsRepository.findByUserId(userDemoGraphics.getId());
+        UserDemoGraphicsEntity userDemoGraphicsEntity = userDemoGraphicsRepository.findAllByName(userDemoGraphics.getUserName());
         if (Objects.isNull(userDemoGraphicsEntity)) {
-            throw new UsernameNotFoundException("User " + userDemoGraphics.getName() + " not found for update.");
+            throw new UsernameNotFoundException("User " + userDemoGraphics.getUserName() + " not found for update.");
         }
-        userDemoGraphicsEntity.setUserId(userDemoGraphics.getId());
-        userDemoGraphicsEntity.setName(userDemoGraphics.getName());
+        userDemoGraphicsEntity.setUserId(userDemoGraphicsEntity.getUserId());
+        userDemoGraphicsEntity.setName(userDemoGraphics.getUserName());
         userDemoGraphicsEntity.setEmail(userDemoGraphics.getEmail());
+        userDemoGraphicsEntity.setPassword(userDemoGraphics.getPassword());
+        userDemoGraphicsEntity.setConfirmPassword(userDemoGraphics.getConfirmPassword());
         userDemoGraphicsEntity.setGender(userDemoGraphics.getGender());
         userDemoGraphicsEntity.setPhoneNumber(userDemoGraphics.getPhoneNumber());
         userDemoGraphicsEntity.setQualification(userDemoGraphics.getQualification());

@@ -22,10 +22,14 @@ import java.util.Set;
 @JsonPropertyOrder
 public class UserDemoGraphics {
     @ApiModelProperty(value = "Field is used for holding userName data as a String type.", required = true)
-    private String name;
+    private String userName;
     @ApiModelProperty(value = "Field is used for holding emailId data as a String type.", required = true)
-    private String emailId;
-    @ApiModelProperty(value = "Field is used for holding gender data as a boolean type.")
+    private String email;
+    @ApiModelProperty(value = "Field is used for holding password data as a String type.", required = true)
+    private String password;
+    @ApiModelProperty(value = "Field is used for holding emailId data as a String type.", required = true)
+    private String confirmPassword;
+    @ApiModelProperty(value = "Field is used for holding confirmPassword data as a boolean type.")
     private String gender;
     @ApiModelProperty(value = "Field is used for holding userPhoneNumber data as a BigInteger type.")
     private BigInteger phoneNumber;
