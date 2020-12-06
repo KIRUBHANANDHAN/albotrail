@@ -6,7 +6,7 @@ import com.albot.ventilator.manager.model.web.UserDemoGraphicsRegistration;
 
 public interface UserDemoGraphicsService {
 
-    UserDemoGraphics getById(Long id);
+    UserDemoGraphics getByUserName(String userName);
 
     UserDemoGraphicsRegistration saveUserDemoGraphicsRegistration(UserDemoGraphicsRegistration userDemoGraphics);
 

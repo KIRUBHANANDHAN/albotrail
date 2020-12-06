@@ -27,12 +27,12 @@ public class UserController {
         this.userDemoGraphicsService = userDemoGraphicsService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Response> getUserDemoGraphics(@PathVariable("id") Long id) {
+    @GetMapping("/{username}")
+    public ResponseEntity<Response> getUserDemoGraphics(@PathVariable("username") String username) {
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully retrieving a user information by username")
-                .setData(userDemoGraphicsService.getById(id)));
+                .setData(userDemoGraphicsService.getByUserName(username)));
     }
 
     @PostMapping("/create")

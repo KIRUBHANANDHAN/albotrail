@@ -29,9 +29,9 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
     }
 
     @Override
-    public UserDemoGraphics getById(Long id) {
+    public UserDemoGraphics getByUserName(String userName) {
         UserDemoGraphicsEntity userDemoGraphicsEntity =
-                userDemoGraphicsRepository.findByUserId(id);
+                userDemoGraphicsRepository.findByUserName(userName);
         return convertToUserDemoGraphics(userDemoGraphicsEntity);
     }
 
@@ -48,7 +48,6 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
         if (Objects.isNull(userDemoGraphicsEntity)) {
             throw new UsernameNotFoundException("User " + userDemoGraphics.getName() + " not found for update.");
         }
-        userDemoGraphicsEntity.setUserId(userDemoGraphics.getId());
         userDemoGraphicsEntity.setName(userDemoGraphics.getName());
         userDemoGraphicsEntity.setEmail(userDemoGraphics.getEmail());
         userDemoGraphicsEntity.setGender(userDemoGraphics.getGender());
