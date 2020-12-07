@@ -71,5 +71,6 @@ public class PatientEntity {
     private Boolean statusFlag;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable=false)
+    @ToString.Exclude
     @EqualsAndHashCode.Exclude private UserDemoGraphicsEntity userDemoGraphicsEntity;
 }

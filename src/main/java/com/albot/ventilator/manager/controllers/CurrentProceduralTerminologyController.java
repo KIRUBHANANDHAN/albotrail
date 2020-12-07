@@ -1,3 +1,4 @@
+/*
 package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.web.CurrentProceduralTerminology;
@@ -86,3 +87,4 @@ public class CurrentProceduralTerminologyController {
                 .setMessage("Successfully deleted currentProceduralTerminology information given by rowId"));
     }
 }
+*/

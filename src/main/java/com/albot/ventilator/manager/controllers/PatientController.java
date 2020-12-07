@@ -52,7 +52,9 @@ public class PatientController {
 
     }
 
-    //Creating a Patients information
+
+
+   /* //Creating a Patients information
     @PostMapping("/save")
     @ApiOperation("Create A Patient Information.")
     public ResponseEntity<Response> createPatientInfo(@RequestBody Patients patients) {
@@ -83,5 +85,5 @@ public class PatientController {
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully deleted patient information given by patientId"));
-    }
+    }*/
 }

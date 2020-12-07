@@ -1,3 +1,4 @@
+/*
 package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.web.CallOut;
@@ -84,3 +85,4 @@ public class CallOutController {
                 .setMessage("Successfully deleted callOut information given by hadmId"));
     }
 }
+*/

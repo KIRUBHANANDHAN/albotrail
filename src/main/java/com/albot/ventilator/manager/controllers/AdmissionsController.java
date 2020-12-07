@@ -1,3 +1,4 @@
+/*
 package com.albot.ventilator.manager.controllers;
 
 import com.albot.ventilator.manager.model.web.Admissions;
@@ -83,3 +84,4 @@ public class AdmissionsController {
                 .setMessage("Successfully deleted admissions information given by hadmId"));
     }
 }
+*/
