@@ -26,7 +26,7 @@ public class UserDemoGraphics {
     @ApiModelProperty(value = "Field is used for holding userName data as a String type.", required = true)
     private String name;
     @ApiModelProperty(value = "Field is used for holding emailId data as a String type.", required = true)
-    private String emailId;
+    private String email;
     @ApiModelProperty(value = "Field is used for holding gender data as a boolean type.")
     private String gender;
     @ApiModelProperty(value = "Field is used for holding userPhoneNumber data as a BigInteger type.")
