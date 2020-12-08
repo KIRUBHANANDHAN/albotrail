@@ -10,14 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @Api(value = "HospitalRegistration", description = "Content Orchestration Operations For HospitalRegistrationController.", tags = { "HospitalRegistration" })
-@RequestMapping("/v1/api")
+@RequestMapping("/v1/api/hospital")
 @RestController
 public class HospitalRegistrationController {
 
@@ -36,5 +33,13 @@ public class HospitalRegistrationController {
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully register given  hospital information.")
                 .setData(hospitalRegistrationService.createHospital(hospitalRegistration)));
+    }
+
+    @GetMapping("/{hosp_id}")
+    public ResponseEntity<Response> GetHospitalContactDetails(@PathVariable("hosp_id") String hosp_id) {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving a hospital information by hosp_id")
+                .setData(hospitalRegistrationService.getContact(hosp_id)));
     }
 }

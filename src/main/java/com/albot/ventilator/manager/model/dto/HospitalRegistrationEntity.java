@@ -27,7 +27,7 @@ public class HospitalRegistrationEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hospital_Id", columnDefinition = "bigserial", nullable = false, updatable = false)
-    private BigInteger hospitalId;
+    private Integer hospitalId;
     @Column(name = "name")
     private String name;
     @Type(type = "jsonb")

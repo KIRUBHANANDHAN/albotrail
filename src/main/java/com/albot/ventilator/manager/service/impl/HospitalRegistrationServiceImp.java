@@ -36,6 +36,13 @@ public class HospitalRegistrationServiceImp implements HospitalRegistrationServi
                         .save(convertToHospitalRegistrationEntity(hospitalRegistration)));
     }
 
+    @Override
+    public String getContact(String hosp_id) {
+
+        String number=hospitalRegistrationRepository.findContact(1);
+        return number;
+    }
+
     private HospitalRegistrationEntity convertToHospitalRegistrationEntity(HospitalRegistration hospitalRegistration) {
         return modelMapper
                 .map(hospitalRegistration, HospitalRegistrationEntity.class);
