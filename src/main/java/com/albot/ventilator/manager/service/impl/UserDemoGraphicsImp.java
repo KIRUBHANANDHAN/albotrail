@@ -1,7 +1,7 @@
 package com.albot.ventilator.manager.service.impl;
 
-import com.albot.ventilator.manager.model.web.UserDemoGraphics;
 import com.albot.ventilator.manager.model.dto.UserDemoGraphicsEntity;
+import com.albot.ventilator.manager.model.web.UserDemoGraphics;
 import com.albot.ventilator.manager.model.web.UserDemoGraphicsRegistration;
 import com.albot.ventilator.manager.repos.postgres.UserDemoGraphicsRepository;
 import com.albot.ventilator.manager.service.UserDemoGraphicsService;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.util.Objects;
 
 @Service

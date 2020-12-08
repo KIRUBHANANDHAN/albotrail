@@ -15,13 +15,7 @@ public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(AdmissionsHadmIdNotFoundException.class)
-    public ResponseEntity<Response> exceptionHandler(AdmissionsHadmIdNotFoundException ex) {
-        logger.error("Error: {}", ex.getMessage());
-        return ResponseEntity.ok(new Response().setStatus("Failed")
-                .setStatusCode(HttpStatus.NOT_FOUND.value())
-                .setMessage(ex.getMessage()));
-    }
+
 
     @ExceptionHandler(BadStatusRequestException.class)
     public ResponseEntity<Response> exceptionHandler(BadStatusRequestException ex) {
@@ -31,21 +25,8 @@ public class GlobalExceptionHandler {
                 .setMessage(ex.getMessage()));
     }
 
-    @ExceptionHandler(CallOutHadmIdNotFoundException.class)
-    public ResponseEntity<Response> exceptionHandler(CallOutHadmIdNotFoundException ex) {
-        logger.error("Error: {}", ex.getMessage());
-        return ResponseEntity.ok(new Response().setStatus("Failed")
-                .setStatusCode(HttpStatus.NOT_FOUND.value())
-                .setMessage(ex.getMessage()));
-    }
 
-    @ExceptionHandler(CareGiversCgIdNotFoundException.class)
-    public ResponseEntity<Response> exceptionHandler(CareGiversCgIdNotFoundException ex) {
-        logger.error("Error: {}", ex.getMessage());
-        return ResponseEntity.ok(new Response().setStatus("Failed")
-                .setStatusCode(HttpStatus.NOT_FOUND.value())
-                .setMessage(ex.getMessage()));
-    }
+
 
     @ExceptionHandler(PatientSubjectIdNotFoundException.class)
     public ResponseEntity<Response> exceptionHandler(PatientSubjectIdNotFoundException ex) {
@@ -55,19 +36,6 @@ public class GlobalExceptionHandler {
                 .setMessage(ex.getMessage()));
     }
 
-    @ExceptionHandler(CptEventSubjectIdNotFoundException.class)
-    public ResponseEntity<Response> exceptionHandler(CptEventSubjectIdNotFoundException ex) {
-        logger.error("Error: {}", ex.getMessage());
-        return ResponseEntity.ok(new Response().setStatus("Failed")
-                .setStatusCode(HttpStatus.NOT_FOUND.value())
-                .setMessage(ex.getMessage()));
-    }
 
-    @ExceptionHandler(CurrentProceduralTerminologyRowIdNotFoundException.class)
-    public ResponseEntity<Response> exceptionHandler(CurrentProceduralTerminologyRowIdNotFoundException ex) {
-        logger.error("Error: {}", ex.getMessage());
-        return ResponseEntity.ok(new Response().setStatus("Failed")
-                .setStatusCode(HttpStatus.NOT_FOUND.value())
-                .setMessage(ex.getMessage()));
-    }
+
 }
