@@ -10,7 +10,7 @@ spring:
   #   environment: dev
   datasource:
     platform: "postgres"
-    url: jdbc:postgresql://localhost:5432/ventilator
+    url: jdbc:postgresql://3.21.236.223:5432/ventilator
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -22,8 +22,9 @@ spring:
       ddl-auto: update
 logging:
   level:
+    root: ERROR
     org.springframework.web: DEBUG
-    com.albot.contentorchestrationservice: DEBUG
+    io.albot: DEBUG
 
 sns_config:
   awsAccessKeyId: "AKIAXPEX6XFHKE2EGIP2"
