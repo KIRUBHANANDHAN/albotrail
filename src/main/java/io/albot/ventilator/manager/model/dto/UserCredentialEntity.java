@@ -8,6 +8,7 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,8 +29,6 @@ public class UserCredentialEntity {
     private BigInteger id;
     @Column(name = "user_name")
     private String userName;
-    @Column(name = "patient_id")
-    private BigInteger patientId;
     @Column(name = "encrypted_password")
     private String encryptedPassword;
     @Column(name = "jwt")
@@ -38,12 +37,12 @@ public class UserCredentialEntity {
     private Date lastLogin;
     @Column(name = "is_active_user")
     private Boolean isActiveUser;
-    @Column(name = "password_reset")
-    private Boolean passwordReset;
-    @Column(name = "is_default_password")
-    private Boolean isDefaultPassword;
     @Column(name = "wrong_password_count")
     private Integer wrongPasswordCount;
     @Column(name = "mobile_number")
     private String userMobileNumber;
+    @OneToOne(mappedBy = "userCredentialEntity")
+    @EqualsAndHashCode.Exclude private UserDemoGraphicsEntity userDemoGraphicsEntity;
+
+
 }

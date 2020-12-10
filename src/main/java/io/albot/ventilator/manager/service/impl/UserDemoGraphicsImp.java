@@ -1,8 +1,11 @@
 package io.albot.ventilator.manager.service.impl;
 
+import io.albot.ventilator.manager.model.dto.HospitalRegistrationEntity;
+import io.albot.ventilator.manager.model.dto.UserCredentialEntity;
 import io.albot.ventilator.manager.model.dto.UserDemoGraphicsEntity;
 import io.albot.ventilator.manager.model.web.UserDemoGraphics;
 import io.albot.ventilator.manager.model.web.UserDemoGraphicsRegistration;
+import io.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
 import io.albot.ventilator.manager.repos.postgres.UserDemoGraphicsRepository;
 import io.albot.ventilator.manager.service.UserDemoGraphicsService;
 import org.modelmapper.ModelMapper;
@@ -10,9 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class UserDemoGraphicsImp implements UserDemoGraphicsService {
@@ -22,7 +28,12 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDemoGraphicsRepository userDemoGraphicsRepository;
+
+    @Autowired
+    UserCredentialRepository credentialRepository;
 
     @Autowired
     public UserDemoGraphicsImp(UserDemoGraphicsRepository userDemoGraphicsRepository) {
@@ -37,10 +48,27 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
     }
 
     @Override
-    public UserDemoGraphicsRegistration saveUserDemoGraphicsRegistration(UserDemoGraphicsRegistration userDemoGraphicsReg) {
-        return convertToUserDemoGraphicsReg(
-                userDemoGraphicsRepository.
-                        save(convertToUserDemoGraphicsRegEntity(userDemoGraphicsReg)));
+    public UserDemoGraphicsRegistration saveUserRegistration(UserDemoGraphicsRegistration req) {
+        UserCredentialEntity cred = new UserCredentialEntity();
+        cred.setUserName(req.getUsername());
+        cred.setEncryptedPassword(bCryptPasswordEncoder.encode(req.getPassword()));
+        cred.setUserMobileNumber(req.getPhoneNumber());
+        credentialRepository.save(cred);
+        UserDemoGraphicsEntity userDemoGraphicsEntity = new UserDemoGraphicsEntity();
+        userDemoGraphicsEntity.setUserName(req.getUsername());
+        userDemoGraphicsEntity.setName(req.getName());
+        userDemoGraphicsEntity.setEmail(req.getEmail());
+        userDemoGraphicsEntity.setGender(req.getGender());
+        userDemoGraphicsEntity.setPhoneNumber(req.getPhoneNumber());
+        userDemoGraphicsEntity.setQualification(req.getQualification());
+        userDemoGraphicsEntity.setSpecialty(req.getSpecialty());
+        userDemoGraphicsEntity.setWorkExperience(req.getWorkExperience());
+        userDemoGraphicsEntity.setRegistration(req.getRegistration());
+        userDemoGraphicsEntity.setUserCredentialEntity(cred);
+        userDemoGraphicsRepository.save(userDemoGraphicsEntity);
+
+
+        return convertToUserDemoGraphicsReg(userDemoGraphicsRepository.findByUserName(req.getUsername()));
     }
 
     @Override
@@ -55,7 +83,6 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
         userDemoGraphicsEntity.setPhoneNumber(userDemoGraphics.getPhoneNumber());
         userDemoGraphicsEntity.setQualification(userDemoGraphics.getQualification());
         userDemoGraphicsEntity.setSpecialty(userDemoGraphics.getSpecialty());
-        userDemoGraphicsEntity.setHospital(userDemoGraphics.getHospital());
         userDemoGraphicsEntity.setWorkExperience(userDemoGraphics.getWorkExperience());
         return convertToUserDemoGraphicsReg(userDemoGraphicsRepository
                 .save(userDemoGraphicsEntity));

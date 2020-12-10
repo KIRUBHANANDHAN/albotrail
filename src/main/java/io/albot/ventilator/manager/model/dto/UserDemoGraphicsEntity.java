@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
@@ -34,7 +35,7 @@ public class UserDemoGraphicsEntity {
     @Column(name = "email_id")
     private String email;
     @Column(name = "phone_number")
-    private BigInteger phoneNumber;
+    private String phoneNumber;
     @Column(name = "qualification")
     private String qualification;
     @Column(name = "hospital")
@@ -43,6 +44,16 @@ public class UserDemoGraphicsEntity {
     private Integer workExperience;
     @Column(name = "specialty")
     private String specialty;
+    @Column(name = "registration")
+    private String registration;
     @OneToMany(mappedBy = "userDemoGraphicsEntity")
     @EqualsAndHashCode.Exclude private Set<PatientEntity> patientEntity;
+
+
+    @OneToOne
+    @JoinColumn(name = "id", nullable=false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude private UserCredentialEntity userCredentialEntity;
+
+
 }

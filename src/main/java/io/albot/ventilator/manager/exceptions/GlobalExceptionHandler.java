@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.persistence.NonUniqueResultException;
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -25,7 +27,13 @@ public class GlobalExceptionHandler {
                 .setMessage(ex.getMessage()));
     }
 
-
+    @ExceptionHandler(NonUniqueResultException.class)
+    public ResponseEntity<Response> exceptionHandler(NonUniqueResultException ex) {
+        logger.error("Error: {}", ex.getMessage());
+        return ResponseEntity.ok(new Response().setStatus("Failed")
+                .setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .setMessage("Record Already exists"));
+    }
 
 
     @ExceptionHandler(PatientSubjectIdNotFoundException.class)

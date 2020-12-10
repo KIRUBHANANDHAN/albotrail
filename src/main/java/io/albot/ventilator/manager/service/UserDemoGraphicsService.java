@@ -8,7 +8,7 @@ public interface UserDemoGraphicsService {
 
     UserDemoGraphics getByUserName(String userName);
 
-    UserDemoGraphicsRegistration saveUserDemoGraphicsRegistration(UserDemoGraphicsRegistration userDemoGraphics);
+    UserDemoGraphicsRegistration saveUserRegistration(UserDemoGraphicsRegistration userDemoGraphics);
 
     UserDemoGraphicsRegistration updateUserDemoGraphicsRegistration(UserDemoGraphicsRegistration userDemoGraphics);
 }

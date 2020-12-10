@@ -36,6 +36,7 @@ dependencies {
     compile "io.jsonwebtoken:jjwt:0.9.1"
     compile "com.vladmihalcea:hibernate-types-52:2.9.10"
     compile "com.amazonaws:aws-java-sdk-sns:1.11.878"
+    compile "com.amazonaws:aws-java-sdk:1.11.486"
 
 }
 

@@ -6,6 +6,7 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -36,7 +37,9 @@ public class HospitalRegistrationEntity implements Serializable {
     @Column(name = "registration_num")
     private String registrationNum;
     @Column(name = "phone_number")
-    private BigInteger phoneNumber;
+    private String phoneNumber;
     @OneToMany(mappedBy = "hospitalRegistrationEntity", cascade = CascadeType.ALL)
     private List<VentilatorMetadataEntity> ventilatorMetadataEntity;
+
+
 }

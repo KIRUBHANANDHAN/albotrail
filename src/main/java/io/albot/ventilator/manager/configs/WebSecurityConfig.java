@@ -65,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v1/api/reset/password").permitAll()
                 .antMatchers("/v1/api/generate/*").permitAll()
                 .antMatchers("/v1/api/validate/otp").permitAll()
+                .antMatchers("/v1/api/user/create").permitAll()
                 .anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

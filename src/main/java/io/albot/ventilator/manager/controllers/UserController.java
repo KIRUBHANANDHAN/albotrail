@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok(new Response().setStatus("Success")
                 .setStatusCode(HttpStatus.OK.value())
                 .setMessage("Successfully created a user information")
-                .setData(userDemoGraphicsService.saveUserDemoGraphicsRegistration(userDemoGraphicsRegistration)));
+                .setData(userDemoGraphicsService.saveUserRegistration(userDemoGraphicsRegistration)));
     }
 
     @PutMapping("/update")
