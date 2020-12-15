@@ -9,7 +9,6 @@ import lombok.ToString;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.Set;
 
 
@@ -46,14 +45,18 @@ public class UserDemoGraphicsEntity {
     private String specialty;
     @Column(name = "registration")
     private String registration;
+    @Column(name = "profile_image")
+    private String profileImg;
     @OneToMany(mappedBy = "userDemoGraphicsEntity")
-    @EqualsAndHashCode.Exclude private Set<PatientEntity> patientEntity;
+    @EqualsAndHashCode.Exclude
+    private Set<PatientEntity> patientEntity;
 
 
     @OneToOne
-    @JoinColumn(name = "id", nullable=false)
+    @JoinColumn(name = "id", nullable = false)
     @ToString.Exclude
-    @EqualsAndHashCode.Exclude private UserCredentialEntity userCredentialEntity;
+    @EqualsAndHashCode.Exclude
+    private UserCredentialEntity userCredentialEntity;
 
 
 }

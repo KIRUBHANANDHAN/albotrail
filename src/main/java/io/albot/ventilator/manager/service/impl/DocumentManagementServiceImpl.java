@@ -1,24 +1,21 @@
-/*
+
 package io.albot.ventilator.manager.service.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
+import io.albot.ventilator.manager.repos.postgres.UserDemoGraphicsRepository;
 import io.albot.ventilator.manager.service.DocumentManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
+import java.net.URL;
 
-*/
-/**
- * @author Chamith
- *//*
 
 @Slf4j
 @Service
@@ -26,37 +23,45 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     @Autowired
     private AmazonS3 amazonS3Client;
-
     @Autowired
-   // private ApplicationProperties applicationProperties;
+    UserDemoGraphicsRepository repo;
 
-    //@Override
-    public void uploadMultipleFiles(List<MultipartFile> files) {
-        if (files != null) {
-            files.forEach(multipartFile -> {
-                File file = convertMultiPartFileToFile(multipartFile);
-                String uniqueFileName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-             //   uploadFileToS3bucket(uniqueFileName, file, applicationProperties.getAwsServices().getBucketName());
-            });
+    @Transactional
+    public String uploadFileToS3bucket(String fileName, File file, String bucketName, String id) {
+        URL url = null;
+        try {
+            repo.updateProfileLink(fileName, Long.parseLong(id));
+            amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, file));
+
+        } catch (Exception e) {
+            log.error("Error uploading aws file", e);
+            return "failed";
         }
-    }
 
-    private void uploadFileToS3bucket(String fileName, File file, String bucketName) {
-        amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, file));
+        return "uploaded";
 
-    }
-
-    private S3Object downloadFileFromS3bucket(String fileName, String bucketName) {
-        S3Object object = amazonS3Client.getObject(bucketName,  fileName);
-        return object;
 
     }
 
-    private void deleteFileFromS3bucket(String fileName, String bucketName) {
-        amazonS3Client.deleteObject(bucketName, fileName);
+    public String getS3Link(String fileName, String bucketName) {
+        URL url = null;
+        try {
+            java.util.Date expiration = new java.util.Date();
+            long expTimeMillis = expiration.getTime();
+            expTimeMillis += 1000 * 60 * 60;
+            expiration.setTime(expTimeMillis);
+            url = amazonS3Client.generatePresignedUrl(bucketName, fileName, expiration);
+        } catch (Exception e) {
+            log.error("Error uploading aws file", e);
+            return "failed";
+        }
+
+        return url.toExternalForm();
+
+
     }
 
-    private File convertMultiPartFileToFile(MultipartFile file) {
+    public File convertMultiPartFileToFile(MultipartFile file) {
         File convertedFile = new File(file.getOriginalFilename());
         try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
             fos.write(file.getBytes());
@@ -65,4 +70,4 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         }
         return convertedFile;
     }
-}*/
+}

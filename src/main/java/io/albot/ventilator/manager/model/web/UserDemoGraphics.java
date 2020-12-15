@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
 import java.util.Set;
 
 @Data
@@ -39,6 +38,8 @@ public class UserDemoGraphics {
     private Integer workExperience;
     @ApiModelProperty(value = "Field is used for holding specialty data as a String type.")
     private String specialty;
+    @ApiModelProperty(value = "Field is used for holding image name data as a String type.")
+    private String profileImg;
     @ApiModelProperty(value = "Field is used for holding patientEntity data as a List type.")
     private Set<PatientLoginView> patientEntity;
 }

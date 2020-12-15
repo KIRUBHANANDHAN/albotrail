@@ -1,6 +1,7 @@
 package io.albot.ventilator.manager.model.dto;
 
 
+import io.albot.ventilator.manager.model.web.InsuranceDetails;
 import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -51,7 +52,7 @@ public class PatientEntity {
     private AddressEntity address;
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
-    private InsuranceDetailsEntity insuranceDetails;
+    private InsuranceDetails insuranceDetails;
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private EmergencyContactDetailsEntity emergencyContactDetails;

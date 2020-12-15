@@ -19,7 +19,7 @@ spring:
     show_sql: true
     format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 logging:
   level:
     root: ERROR
@@ -30,9 +30,13 @@ sns_config:
   awsAccessKeyId: "AKIAXPEX6XFHKE2EGIP2"
   secretKey: "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"
 
+aws-s3-details:
+  bucket: user-profiles-list
+
 jwt_token:
   securityKey: "secret"
   #Token will expired after 60000 milliseconds
   tokenExpireTime: 300000
   region: "us-east-1"
+
 

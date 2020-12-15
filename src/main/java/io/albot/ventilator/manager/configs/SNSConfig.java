@@ -4,6 +4,8 @@ package io.albot.ventilator.manager.configs;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,5 +27,14 @@ public class SNSConfig {
         AmazonSNS amazonSNS = AmazonSNSClientBuilder.standard()
                 .withRegion(Regions.fromName("us-east-1")).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
         return amazonSNS;
+    }
+
+    @Bean
+    public AmazonS3 amazonS3Client() {
+
+        BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsAccessKeyId, secretKey);
+
+        return AmazonS3ClientBuilder
+                .standard().withRegion(Regions.fromName("us-east-2")).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
     }
 }
