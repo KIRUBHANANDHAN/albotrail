@@ -1,5 +1,6 @@
 package io.albot.ventilator.manager.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
@@ -28,7 +29,7 @@ public class HospitalRegistrationEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hospital_Id", columnDefinition = "bigserial", nullable = false, updatable = false)
-    private Integer hospitalId;
+    private Long hospitalId;
     @Column(name = "name")
     private String name;
     @Type(type = "jsonb")
@@ -38,8 +39,15 @@ public class HospitalRegistrationEntity implements Serializable {
     private String registrationNum;
     @Column(name = "phone_number")
     private String phoneNumber;
+
     @OneToMany(mappedBy = "hospitalRegistrationEntity", cascade = CascadeType.ALL)
     private List<VentilatorMetadataEntity> ventilatorMetadataEntity;
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "hospital_Id", referencedColumnName = "user_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private UserDemoGraphicsEntity users;
 
 
 }

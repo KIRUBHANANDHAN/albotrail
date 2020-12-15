@@ -21,10 +21,13 @@ spring:
     hibernate:
       ddl-auto: update
 logging:
+  file: logs/ventilator-debug.log
+  pattern:
+    file: "%d %-5level [%thread] %logger : %msg%n"
   level:
-    root: ERROR
-    org.springframework.web: DEBUG
+    org.springframework.web: ERROR
     io.albot: DEBUG
+    org.hibernate: ERROR
 
 sns_config:
   awsAccessKeyId: "AKIAXPEX6XFHKE2EGIP2"

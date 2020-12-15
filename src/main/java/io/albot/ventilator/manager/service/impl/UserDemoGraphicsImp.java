@@ -65,6 +65,9 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
         userDemoGraphicsEntity.setWorkExperience(req.getWorkExperience());
         userDemoGraphicsEntity.setRegistration(req.getRegistration());
         userDemoGraphicsEntity.setUserCredentialEntity(cred);
+        HospitalRegistrationEntity hosp=new HospitalRegistrationEntity();
+        hosp.setHospitalId(Long.parseLong(req.getHosp_id()));
+        userDemoGraphicsEntity.setHospitalRegistrationEntity(hosp);
         userDemoGraphicsRepository.save(userDemoGraphicsEntity);
 
 

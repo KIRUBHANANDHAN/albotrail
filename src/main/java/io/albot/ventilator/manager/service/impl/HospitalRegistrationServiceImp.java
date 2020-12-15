@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class HospitalRegistrationServiceImp implements HospitalRegistrationService {
@@ -39,8 +41,14 @@ public class HospitalRegistrationServiceImp implements HospitalRegistrationServi
     @Override
     public String getContact(String hosp_id) {
 
-        String number=hospitalRegistrationRepository.findContact(1);
+        String number = hospitalRegistrationRepository.findContact(Long.parseLong(hosp_id));
         return number;
+    }
+
+    @Override
+    public List<HospitalRegistration> getAllHospitals() {
+        List<HospitalRegistrationEntity>  hosps=  hospitalRegistrationRepository.findAll();
+         return convertToHospList(hosps);
     }
 
     private HospitalRegistrationEntity convertToHospitalRegistrationEntity(HospitalRegistration hospitalRegistration) {
@@ -51,5 +59,10 @@ public class HospitalRegistrationServiceImp implements HospitalRegistrationServi
     private HospitalRegistration convertToHospitalRegistration(HospitalRegistrationEntity hospitalRegistrationEntity) {
         return modelMapper
                 .map(hospitalRegistrationEntity, HospitalRegistration.class);
+    }
+
+    private List<HospitalRegistration> convertToHospList(List<HospitalRegistrationEntity> hospitalRegistrationEntity) {
+        return modelMapper
+                .map(hospitalRegistrationEntity, List.class);
     }
 }

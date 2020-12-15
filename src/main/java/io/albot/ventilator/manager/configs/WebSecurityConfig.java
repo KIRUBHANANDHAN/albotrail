@@ -66,6 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v1/api/generate/*").permitAll()
                 .antMatchers("/v1/api/validate/otp").permitAll()
                 .antMatchers("/v1/api/user/create").permitAll()
+                .antMatchers("/v1/api/hospital/create").permitAll()
+                .antMatchers("/v1/api/hospital/all").permitAll()
                 .anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

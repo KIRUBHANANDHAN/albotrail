@@ -16,8 +16,6 @@ import java.math.BigInteger;
 @JsonSerialize
 @JsonDeserialize
 public class HospitalRegistration {
-    //@ApiModelProperty(value = "Field is used for holding hospitalId data as a UUID type.", required = true)
-    //private UUID hospitalId;
     @ApiModelProperty(value = "Field is used for holding hospitalName data as a String type.")
     private String name;
     @ApiModelProperty(value = "Field is used for holding hospitalAddress data as a Address type.")

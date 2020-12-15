@@ -32,8 +32,7 @@ public class UserDemoGraphics {
     private String phoneNumber;
     @ApiModelProperty(value = "Field is used for holding userQualification data as a String type.")
     private String qualification;
-    @ApiModelProperty(value = "Field is used for holding hospital data as a String type.")
-    private String hospital;
+
     @ApiModelProperty(value = "Field is used for holding workExperience data as a Integer type.")
     private Integer workExperience;
     @ApiModelProperty(value = "Field is used for holding specialty data as a String type.")

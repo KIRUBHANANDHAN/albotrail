@@ -44,5 +44,7 @@ public class UserDemoGraphicsRegistration {
     private String username;
     @ApiModelProperty(value = "Field is used for holding registration data as a String type.")
     private String registration;
+    @ApiModelProperty(value = "Field is used for holding hosp_id data as a String type.")
+    private String hosp_id;
 
 }

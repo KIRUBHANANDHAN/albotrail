@@ -42,4 +42,12 @@ public class HospitalRegistrationController {
                 .setMessage("Successfully retrieving a hospital information by hosp_id")
                 .setData(hospitalRegistrationService.getContact(hosp_id)));
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<Response> getAll() {
+        return ResponseEntity.ok(new Response().setStatus("Success")
+                .setStatusCode(HttpStatus.OK.value())
+                .setMessage("Successfully retrieving a hospital information by hosp_id")
+                .setData(hospitalRegistrationService.getAllHospitals()));
+    }
 }

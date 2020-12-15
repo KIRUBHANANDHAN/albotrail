@@ -10,6 +10,6 @@ public interface HospitalRegistrationRepository extends JpaRepository<HospitalRe
 
 
     @Query("SELECT t.phoneNumber FROM HospitalRegistrationEntity t WHERE t.hospitalId = ?1")
-    String findContact(int hosp_id);
+    String findContact(long hosp_id);
 
 }

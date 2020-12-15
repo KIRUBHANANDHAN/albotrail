@@ -37,8 +37,6 @@ public class UserDemoGraphicsEntity {
     private String phoneNumber;
     @Column(name = "qualification")
     private String qualification;
-    @Column(name = "hospital")
-    private String hospital;
     @Column(name = "work_experience")
     private Integer workExperience;
     @Column(name = "specialty")
@@ -51,6 +49,9 @@ public class UserDemoGraphicsEntity {
     @EqualsAndHashCode.Exclude
     private Set<PatientEntity> patientEntity;
 
+    @OneToOne
+    @JoinColumn(name = "hospital_Id")
+    private HospitalRegistrationEntity hospitalRegistrationEntity;
 
     @OneToOne
     @JoinColumn(name = "id", nullable = false)
