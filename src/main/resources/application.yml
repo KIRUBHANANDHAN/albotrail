@@ -10,7 +10,7 @@ spring:
   #   environment: dev
   datasource:
     platform: "postgres"
-    url: jdbc:postgresql://localhost:5432/ventilator
+    url: jdbc:postgresql://3.21.236.223:5432/ventilator
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver

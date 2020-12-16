@@ -1,4 +1,4 @@
-package io.albot.ventilator.manager.service.impl;
+package io.albot.ventilator.manager.util;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class HospitalRegistrationServiceImp implements HospitalRegistrationService {
 
-    private static final Logger logger = LoggerFactory.getLogger(GenerateOneTimePassword.class);
+    private static final Logger logger = LoggerFactory.getLogger(HospitalRegistrationServiceImp.class);
 
     private final ModelMapper modelMapper;
 
@@ -47,8 +47,8 @@ public class HospitalRegistrationServiceImp implements HospitalRegistrationServi
 
     @Override
     public List<HospitalRegistration> getAllHospitals() {
-        List<HospitalRegistrationEntity>  hosps=  hospitalRegistrationRepository.findAll();
-         return convertToHospList(hosps);
+        List<HospitalRegistrationEntity> hosps = hospitalRegistrationRepository.findAll();
+        return convertToHospList(hosps);
     }
 
     private HospitalRegistrationEntity convertToHospitalRegistrationEntity(HospitalRegistration hospitalRegistration) {
