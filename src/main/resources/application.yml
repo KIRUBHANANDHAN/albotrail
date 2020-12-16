@@ -10,7 +10,7 @@ spring:
   #   environment: dev
   datasource:
     platform: "postgres"
-    url: jdbc:postgresql://3.21.236.223:5432/ventilator
+    url: jdbc:postgresql://localhost:5432/ventilator
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -32,6 +32,7 @@ logging:
 sns_config:
   awsAccessKeyId: "AKIAXPEX6XFHKE2EGIP2"
   secretKey: "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"
+  region: "us-east-2"
 
 aws-s3-details:
   bucket: user-profiles-list

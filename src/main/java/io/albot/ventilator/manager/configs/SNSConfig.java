@@ -18,14 +18,14 @@ public class SNSConfig {
     private String awsAccessKeyId;
     @Value("${sns_config.secretKey}")
     private String secretKey;
-    @Value("${sns_config.secretKey}")
+    @Value("${sns_config.region}")
     private String region;
 
     @Bean
     public AmazonSNS getAmazonSNSObj() {
         BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsAccessKeyId, secretKey);
         AmazonSNS amazonSNS = AmazonSNSClientBuilder.standard()
-                .withRegion(Regions.fromName("us-east-1")).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
+                .withRegion(Regions.fromName(region)).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
         return amazonSNS;
     }
 
@@ -35,6 +35,6 @@ public class SNSConfig {
         BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsAccessKeyId, secretKey);
 
         return AmazonS3ClientBuilder
-                .standard().withRegion(Regions.fromName("us-east-2")).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
+                .standard().withRegion(Regions.fromName(region)).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
     }
 }

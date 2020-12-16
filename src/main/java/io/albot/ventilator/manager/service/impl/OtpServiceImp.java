@@ -49,11 +49,12 @@ public class OtpServiceImp implements OtpService {
         if (!Objects.isNull(otpNumber)) {
             String message = "Your OTP is " + otpNumber + ".This is valid for only 1 minute and can be used only once.";
             Map<String, MessageAttributeValue> map = new HashMap<>();
-           /* map.put("AWS.SNS.SMS.SenderID",
-                        new  MessageAttributeValue().withStringValue("ALBOT").withDataType("String"));*/
+            map.put("AWS.SNS.SMS.SenderID",
+                        new  MessageAttributeValue().withStringValue("ALBOT").withDataType("String"));
             map.put("AWS.SNS.SMS.SMSType",
                     new MessageAttributeValue().withStringValue("Transactional").withDataType("String"));
-            PublishResult res = amazonSNS.publish(new PublishRequest().withMessage(message).withPhoneNumber(String.valueOf(userCredentialEntity.getUserMobileNumber())).withMessageAttributes(map));
+            String phone = userCredentialEntity.getUserMobileNumber();
+            PublishResult res = amazonSNS.publish(new PublishRequest().withMessage(message).withPhoneNumber(phone).withMessageAttributes(map));
             logger.info("message Id: {} ", res.getMessageId());
 
             return "Successfully send otp to your mobile number";
