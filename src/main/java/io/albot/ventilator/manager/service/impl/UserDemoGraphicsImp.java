@@ -16,9 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Service
 public class UserDemoGraphicsImp implements UserDemoGraphicsService {
@@ -53,6 +51,7 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
         cred.setUserName(req.getUsername());
         cred.setEncryptedPassword(bCryptPasswordEncoder.encode(req.getPassword()));
         cred.setUserMobileNumber(req.getPhoneNumber());
+        cred.setIsActiveUser(true);
         credentialRepository.save(cred);
         UserDemoGraphicsEntity userDemoGraphicsEntity = new UserDemoGraphicsEntity();
         userDemoGraphicsEntity.setUserName(req.getUsername());
@@ -65,7 +64,7 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
         userDemoGraphicsEntity.setWorkExperience(req.getWorkExperience());
         userDemoGraphicsEntity.setRegistration(req.getRegistration());
         userDemoGraphicsEntity.setUserCredentialEntity(cred);
-        HospitalRegistrationEntity hosp=new HospitalRegistrationEntity();
+        HospitalRegistrationEntity hosp = new HospitalRegistrationEntity();
         hosp.setHospitalId(Long.parseLong(req.getHosp_id()));
         userDemoGraphicsEntity.setHospitalRegistrationEntity(hosp);
         userDemoGraphicsRepository.save(userDemoGraphicsEntity);
@@ -87,6 +86,7 @@ public class UserDemoGraphicsImp implements UserDemoGraphicsService {
         userDemoGraphicsEntity.setQualification(userDemoGraphics.getQualification());
         userDemoGraphicsEntity.setSpecialty(userDemoGraphics.getSpecialty());
         userDemoGraphicsEntity.setWorkExperience(userDemoGraphics.getWorkExperience());
+        credentialRepository.updateMobile(userDemoGraphics.getPhoneNumber(), userDemoGraphicsEntity.getUserName());
         return convertToUserDemoGraphicsReg(userDemoGraphicsRepository
                 .save(userDemoGraphicsEntity));
     }

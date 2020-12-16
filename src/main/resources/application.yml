@@ -41,6 +41,3 @@ jwt_token:
   securityKey: "secret"
   #Token will expired after 60000 milliseconds
   tokenExpireTime: 300000
-  region: "us-east-1"
-
-
