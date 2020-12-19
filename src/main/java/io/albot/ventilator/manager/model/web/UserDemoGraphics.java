@@ -41,4 +41,7 @@ public class UserDemoGraphics {
     private String profileImg;
     @ApiModelProperty(value = "Field is used for holding patientEntity data as a List type.")
     private Set<PatientLoginView> patientEntity;
+    private String registration;
+    private String userName;
+    private String hospitalId;
 }

@@ -47,7 +47,7 @@ public class OtpServiceImp implements OtpService {
         }
         Integer otpNumber = generateOneTimePassword.generateOTP(userName);
         if (!Objects.isNull(otpNumber)) {
-            String message = "Your OTP is " + otpNumber + ".This is valid for only 1 minute and can be used only once.";
+            String message = "Your OTP is " + otpNumber + " .This is valid for only 1 minute and can be used only once.";
             Map<String, MessageAttributeValue> map = new HashMap<>();
             map.put("AWS.SNS.SMS.SenderID",
                         new  MessageAttributeValue().withStringValue("ALBOT").withDataType("String"));
@@ -57,7 +57,7 @@ public class OtpServiceImp implements OtpService {
             PublishResult res = amazonSNS.publish(new PublishRequest().withMessage(message).withPhoneNumber(phone).withMessageAttributes(map));
             logger.info("message Id: {} ", res.getMessageId());
 
-            return "Successfully send otp to your mobile number";
+            return "Successfully send otp to your mobile number :: "+phone;
         } else {
             logger.error("Failed to send one time password, user : {} ", userName);
             throw new FailedToSendOneTimePassword("Given user " + userName + " don't have mobile");

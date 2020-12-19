@@ -25,7 +25,7 @@ public class SNSConfig {
     public AmazonSNS getAmazonSNSObj() {
         BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsAccessKeyId, secretKey);
         AmazonSNS amazonSNS = AmazonSNSClientBuilder.standard()
-                .withRegion(Regions.fromName(region)).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
+                .withRegion(Regions.fromName("us-east-1")).withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
         return amazonSNS;
     }
 
