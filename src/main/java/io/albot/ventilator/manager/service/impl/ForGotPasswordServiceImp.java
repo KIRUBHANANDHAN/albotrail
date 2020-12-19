@@ -9,6 +9,8 @@ import io.albot.ventilator.manager.repos.postgres.UserCredentialRepository;
 import io.albot.ventilator.manager.service.ForGotPasswordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -21,7 +23,8 @@ public class ForGotPasswordServiceImp implements ForGotPasswordService {
     public ForGotPasswordServiceImp(UserCredentialRepository userCredentialRepository) {
         this.userCredentialRepository = userCredentialRepository;
     }
-
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public IdentifyByLoginUser getIdentifyByLoginUser(String userName) {
@@ -50,7 +53,7 @@ public class ForGotPasswordServiceImp implements ForGotPasswordService {
                 userCredentialRepository
                         .getByUserName(resetUserPassword.getUserName().toLowerCase());
         if (!Objects.isNull(userCredentialEntity)) {
-            userCredentialEntity.setEncryptedPassword(resetUserPassword.getNewPassword());
+            userCredentialEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(resetUserPassword.getNewPassword()));
             userCredentialRepository.save(userCredentialEntity);
             logger.info("Successfully reset password for given user {}", resetUserPassword.getUserName());
             return resetUserPassword;
